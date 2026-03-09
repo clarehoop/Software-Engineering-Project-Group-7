@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import BaseButton from './components/Button/button'
+import BaseCard from './components/Card/card'
 import './App.css'
 
 function App() {

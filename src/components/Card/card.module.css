@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com');
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+:global(.card).PropertyCardContainer {
+  background-color: #FBF5F1;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0px;
+  border-radius: 18px;
+  height: auto;
+  width: min(25rem, 100%);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+:global(.card-img-top).propertyCardImage{
+    width: 100%;
+    aspect-ratio: 16/11;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border: 0px;
+}
+
+:global(.card-text).PropertyCardText {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    color: #000000;
+    font-family: "Montserrat", sans-serif;
+}
+
+:global(.card-title).PropertyCardTitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;   
+    color: #000000;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.metaIcon {
+  width: clamp(0.875rem, 2vw, 1.125rem);
+  height: clamp(0.875rem, 2vw, 1.125rem);
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+.largeMetaIcon {
+  width: clamp(1.125rem, 2vw, 2.250rem);
+  height: clamp(1.125rem, 2vw, 2.250rem);
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+.infoCardContainer{
+    width: min(15.625rem, 100%);
+    height: auto;
+    min-height: 10rem; 
+    border-radius: 18px;
+    padding: clamp(0.75rem, 2vw, 1.25rem);
+    background-color: #FBF5F1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.infoCardTitle{
+
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    color: #000000;
+    font-family: "Montserrat", sans-serif;
+    text-align: left;
+
+}
+
+.infoCardText{
+
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 400;
+    color: #000000;
+    font-family: "Montserrat", sans-serif;
+    text-align: left;
+
+}
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.infoCardGrid{
+      display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}

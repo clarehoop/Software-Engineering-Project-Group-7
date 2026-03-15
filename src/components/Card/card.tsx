@@ -20,8 +20,8 @@ function BaseCard({
   onButtonClick
 }: BaseCardProps) {
   return (
-    <Card style={{ width: '24rem', height: '33.375rem' }}>
-      <Card.Img variant="top" src={imageSrc} />
+    <Card>
+      <Card.Img src={imageSrc} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>

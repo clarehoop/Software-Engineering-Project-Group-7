@@ -38,8 +38,17 @@ function BaseButton({ children = 'Click to load', variant = 'primary', onClick }
       variant={variant}
       disabled={isLoading}
       onClick={!isLoading ? handleClick : undefined}
+      style = {{whiteSpace: 'nowrap', position: 'relative'}}
     >
-      {isLoading ? 'Loading…' : children}
+      <span style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
+        {children}
+      </span>
+
+      {isLoading && (
+        <span style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          Loading…
+        </span>
+      )}
     </Button>
   );
 }

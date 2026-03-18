@@ -11,7 +11,9 @@ body {
   border: 0px;
   border-radius: 18px;
   height: auto;
-  width: min(25rem, 100%);
+  width: 100%;
+  /*max-width: 44rem;
+  /*width: min(36rem, 100%);*/
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -55,13 +57,14 @@ body {
 }
 
 .infoCardContainer{
-    width: min(15.625rem, 100%);
+    width: min(25rem, 100%); 
     height: auto;
-    min-height: 10rem; 
+    min-height: 12rem; 
     border-radius: 18px;
     padding: clamp(0.75rem, 2vw, 1.25rem);
     background-color: #FBF5F1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: visible;
 }
 
 .infoCardTitle{
@@ -85,15 +88,19 @@ body {
 }
 .cardGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(28rem, 100%), 1fr));
+  gap: 3.0rem;
   justify-content: center;
+  justify-items: stretch;
   width: 100%;
 }
 
 .infoCardGrid{
-      display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
-  gap: 1.5rem;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  gap: 5.5rem;
   width: 100%;
+  justify-content: center;
+  justify-items: center;
+  padding: 0.75rem;
 }

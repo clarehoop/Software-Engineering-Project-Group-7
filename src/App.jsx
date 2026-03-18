@@ -4,8 +4,10 @@ import viteLogo from '/vite.svg'
 import BaseButton from './components/Button/button'
 import BaseCard from './components/Card/card'
 import PropertyCard from './components/Card/property-card'
-import InfoCard from './components/Card/info-card'
+import InfoCard from './components/Card/info-card'  
+import navBarStyles from './components/NavBar/navbar.module.css'
 import styles from './components/Card/card.module.css';
+import BasicExample from './components/NavBar/navbar'
 import './App.css'
 
 function App() {
@@ -14,9 +16,9 @@ function App() {
   return (
     /* Ignore for now, testing out components */
      
-     <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: "50px"}}>
-
-
+     <div style = {{display: 'flex', flexDirection: 'column', gap: "50px", justifyContent: 'center'}}>
+      <div className ={navBarStyles.navBar}>
+      </div>
       <div className={styles.cardGrid}>
       <PropertyCard/>
       <PropertyCard/>
@@ -24,9 +26,24 @@ function App() {
       </div>
        <div className={styles.infoCardGrid}>
       <InfoCard/>
-      <InfoCard/>
-      <InfoCard/>
-      <InfoCard/>
+      <InfoCard
+
+    image = "src/images/service.png"
+    title = "Personalized Service"
+    description = "This service was built by students, for students, by students, taking into account your needs and experiences."
+      />
+      <InfoCard
+
+    image = "src/images/process.png"
+    title = "Transparent Process"
+    description = "Stay informed with our clear and honest approach to buying your home."
+      />
+      <InfoCard
+
+    image = "src/images/exceptional-service.png"
+    title = "Exceptional Support"
+    description = "Providing peace of mind with our responsive and attentive customer service."
+      />
       </div>
 
   </div>

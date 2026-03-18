@@ -40,17 +40,17 @@ function PropertyCard({
         <Card.Title className = {styles.PropertyCardTitle}>{title}</Card.Title>
         </div>
         </div>
-        <div style ={{display: 'flex', flexDirection: 'row', gap: '6.25rem', paddingLeft: '0.625rem'}}>
+        <div style ={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '0.625rem', paddingLeft: '0.625rem'}}>
         <div style ={{display: 'flex', gap: '0.625rem', alignItems: 'center'}}>
         <img src={roomsIcon} className={styles.metaIcon}/>
         <Card.Text className = {styles.PropertyCardText}>{rooms}</Card.Text>
         </div>
-        <div style ={{display: 'flex', gap: '0.625rem', alignItems: 'center'}}>
+        <div style ={{display: 'flex', gap: '0.625rem', alignItems: 'center', paddingRight: '0.625rem'}}>
         <img src={sqftIcon} className={styles.metaIcon}/>
         <Card.Text className = {styles.PropertyCardText}>{sqFeet}</Card.Text>
         </div>
         </div>
-        <div style ={{display: 'flex', alignItems: 'center', paddingLeft: '0.625rem', flexDirection: "row", gap: "150px", paddingRight: '0.625rem'}}>
+        <div style ={{display: 'flex', alignItems: 'center', paddingLeft: '0.625rem', paddingRight: '0.625rem', justifyContent: 'space-between'}}>
         <BaseButton variant={buttonVariant} onClick={onButtonClick}>
           {buttonText}
         </BaseButton>

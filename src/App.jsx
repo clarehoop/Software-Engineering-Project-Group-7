@@ -7,7 +7,7 @@ import PropertyCard from './components/Card/property-card'
 import InfoCard from './components/Card/info-card'  
 import navBarStyles from './components/NavBar/navbar.module.css'
 import styles from './components/Card/card.module.css';
-import BasicExample from './components/NavBar/navbar'
+import NavBar from './components/NavBar/navbar'
 import './App.css'
 
 function App() {
@@ -16,10 +16,11 @@ function App() {
   return (
     /* Ignore for now, testing out components */
      
-     <div style = {{display: 'flex', flexDirection: 'column', gap: "50px", justifyContent: 'center'}}>
+     <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
       <div className ={navBarStyles.navBar}>
+      <NavBar/>
       </div>
-      <div className={styles.cardGrid}>
+      <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
       <PropertyCard/>
       <PropertyCard/>
       <PropertyCard/>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ReactNode } from 'react';
 import Button from 'react-bootstrap/Button';
+import styles from './button.module.css';
 
 // Button component that accepts children and shows loading state while an API/request is loading
 // Will need to be integrated with the actual APIs that we use
@@ -11,7 +12,7 @@ interface BaseButtonProps {
   onClick?: () => void;
 }
 
-function BaseButton({ children = 'Click to load', variant = 'primary', onClick }: BaseButtonProps) {
+function BaseButton({ children = 'Click to load', onClick }: BaseButtonProps) {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function BaseButton({ children = 'Click to load', variant = 'primary', onClick }
 
   return (
     <Button
-      variant={variant}
+      className = {styles.button}
       disabled={isLoading}
       onClick={!isLoading ? handleClick : undefined}
       style = {{whiteSpace: 'nowrap', position: 'relative'}}

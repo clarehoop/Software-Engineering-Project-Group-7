@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #FFFFFF;
+  padding: 0.5rem 0.75rem;
+  font-family: "Montserrat", sans-serif;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    color: #000000;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+  
+}
+
+.container:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: none;
+}
+
+.container::placeholder {
+  color: #000000;
+  opacity: 1; 
+}

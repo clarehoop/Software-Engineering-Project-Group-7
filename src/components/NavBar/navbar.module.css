@@ -1,5 +1,5 @@
 .navBar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -7,4 +7,37 @@
   width: 100%;
   z-index: 1000; 
   background-color: #FFFFFF;
+  padding: 0 4rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .navBar {
+    padding: 0 1.25rem;  /* match your mobile pageContent padding */
+  }
+}
+
+.navBarText {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    color: #000000;
+    font-family: "Montserrat", sans-serif;
+    
+}
+
+.navBarSection {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+
+}
+
+.navBarSection img {
+  width: clamp(0.75rem, 2vw, 1.5rem);
+  height: clamp(0.75rem, 2vw, 1.5rem);
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
 }

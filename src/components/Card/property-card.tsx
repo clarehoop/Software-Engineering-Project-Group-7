@@ -32,7 +32,7 @@ function PropertyCard({
 }: BaseCardProps) {
   return (
     <Card className = {styles.PropertyCardContainer}>
-      <Card.Img variant="top" src={imageSrc} className = {styles.propertyCardImage} />
+      <Card.Img variant="top" src={imageSrc} className = {styles.PropertyCardImage} />
       <Card.Body style ={{display: "flex", flexDirection: "column", gap: "0px"}}>
         <div style ={{display: 'flex',padding: '0.625rem'}}>
           <div style ={{display: 'flex', gap: '0.625rem', alignItems: 'center'}}> 

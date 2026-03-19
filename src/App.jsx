@@ -1,30 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import BaseButton from './components/Button/button'
-import BaseCard from './components/Card/card'
 import PropertyCard from './components/Card/property-card'
 import InfoCard from './components/Card/info-card'  
 import navBarStyles from './components/NavBar/navbar.module.css'
 import styles from './components/Card/card.module.css';
 import NavBar from './components/NavBar/navbar'
+import HomePageSearchBar from './components/Home-Page-Search-Bar/search-bar';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     /* Ignore for now, testing out components */
-     
-     <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+     <>
       <div className ={navBarStyles.navBar}>
       <NavBar/>
       </div>
+      <div className = "pageContent">
+      <section className = "section">
+      <div className = "textContainer">
+      <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
+      <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
+      <BaseButton
+      children = "Sign Up"/>
+      </div>
+      <div style ={{marginTop: '2.5rem'}}>
+      <HomePageSearchBar/>
+      </div>
+      </section>
+      <section className = "section">
       <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
       <PropertyCard/>
       <PropertyCard/>
       <PropertyCard/>
       </div>
+      </section>  
+            <section className = "section">
        <div className={styles.infoCardGrid}>
       <InfoCard/>
       <InfoCard
@@ -46,8 +56,9 @@ function App() {
     description = "Providing peace of mind with our responsive and attentive customer service."
       />
       </div>
-
-  </div>
+      </section>
+      </div>
+</>
   )
 }
 

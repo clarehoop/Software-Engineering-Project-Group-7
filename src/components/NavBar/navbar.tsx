@@ -24,7 +24,7 @@ function NavBar() {
     <img src="src/images/navbar-profile.png"/>
     
         <BaseButton 
-        children ="Sign Up"/>
+        children ="Sign In"/>
         </div>
       </Container>
     </Navbar>

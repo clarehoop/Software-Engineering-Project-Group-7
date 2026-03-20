@@ -137,3 +137,19 @@ grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     max-width: 100%; /* full width within grid cell on mobile */
   }
 }
+
+.ReviewCardImage {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.ReviewCardContainer {
+  background-color: #FBF5F1;
+  border: 0px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

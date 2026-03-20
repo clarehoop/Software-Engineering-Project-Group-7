@@ -1,5 +1,6 @@
 import styles from './search-bar.module.css';
 import DropdownComponent from '../Dropdown/dropdown';
+import PriceRangeComponent from '../Input-Text/price-range';
 import FormTextComponent from '../Input-Text/input-text';
 
 function HomePageSearchBar() {
@@ -8,14 +9,18 @@ function HomePageSearchBar() {
   <div className={styles.container}>
     <div className={styles.contentContainer}>
         <div className={styles.item}>
-    <DropdownComponent/>
+    <DropdownComponent
+    icon="src/images/type-icon.png"/>
     </div>
     <div className={styles.item}>
-    <FormTextComponent/>
+    <PriceRangeComponent
+    icon='src/images/price-range-icon.png'
+    />
     </div>
     <div className={styles.item}>
     <FormTextComponent
-    placeholder='Location'/>
+    placeholder='Location'
+    icon="src/images/location.png"/>
     </div>
   </div>
   </div>

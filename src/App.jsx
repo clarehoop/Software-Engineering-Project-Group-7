@@ -5,6 +5,7 @@ import navBarStyles from './components/NavBar/navbar.module.css'
 import styles from './components/Card/card.module.css';
 import NavBar from './components/NavBar/navbar'
 import HomePageSearchBar from './components/Home-Page-Search-Bar/search-bar';
+import ReviewCard from './components/Card/review-card';
 import './App.css'
 
 function App() {
@@ -34,7 +35,12 @@ function App() {
       <PropertyCard/>
       </div>
       </section>  
-            <section className = "section">
+
+      <section className = "section" style={{display: 'flex', flexDirection: 'column',gap: '3.75rem'}}>
+        <div style={{textAlign: 'center'}}>
+        <h1 className="headerText">Why Choose Us</h1>
+        <h2 className="subHeaderText">Ensuring your subletting experience, whether subleaser or <br />sublease, is seamless, secure, and stress-free.</h2>
+        </div>
        <div className={styles.infoCardGrid}>
       <InfoCard/>
       <InfoCard
@@ -56,6 +62,26 @@ function App() {
     description = "Providing peace of mind with our responsive and attentive customer service."
       />
       </div>
+      </section>
+      <section className="section">
+      <div style={{textAlign: 'center'}}>
+      <h1 className="headerText">What People Say</h1>
+      </div>
+      <div className={styles.cardGrid}>
+      <ReviewCard/>
+      <ReviewCard
+      name="Michael Rodriguez"
+      imageSrc="src/images/review-image-michael.png"
+      review="src/images/four-and-half-star-review.png"
+      headshot='src/images/review-michael-headshot.png'
+      location='San Diego'/>
+      <ReviewCard
+      name="Emily Johnson"
+      imageSrc='src/images/review-image-emily.png'
+      headshot='src/images/review-emily-headshot.png'
+      location="Los Angeles"/>
+      </div>
+
       </section>
       </div>
 </>

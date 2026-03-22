@@ -2,8 +2,6 @@ import { Card } from "react-bootstrap";
 import styles from './card.module.css';
 import { ReactNode } from "react";
 
-/* TO-DO: Format text for Card & work on responsiveness (mobile) */
-
 interface ReviewCardProps {
   name?: ReactNode;
   location?: ReactNode;

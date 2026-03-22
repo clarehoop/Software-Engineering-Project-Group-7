@@ -3,8 +3,6 @@ import { ReactNode } from 'react';
 import Button from 'react-bootstrap/Button';
 import styles from './button.module.css';
 
-// Button component that accepts children and shows loading state while an API/request is loading
-// Will need to be integrated with the actual APIs that we use
 
 interface BaseButtonProps {
   children?: ReactNode;

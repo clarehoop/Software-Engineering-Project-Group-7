@@ -1,91 +1,22 @@
-import BaseButton from './components/Button/button'
-import PropertyCard from './components/Card/property-card'
-import InfoCard from './components/Card/info-card'  
-import navBarStyles from './components/NavBar/navbar.module.css'
-import styles from './components/Card/card.module.css';
-import NavBar from './components/NavBar/navbar'
-import HomePageSearchBar from './components/Home-Page-Search-Bar/search-bar';
-import ReviewCard from './components/Card/review-card';
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
+import Layout from './layout';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import About from './pages/About';
+import Help from './pages/Help';
+import './App.css';
 
 function App() {
-
-  return (
-    /* Ignore for now, testing out components */
-     <>
-      <div className ={navBarStyles.navBar}>
-      <NavBar/>
-      </div>
-      <div className = "pageContent">
-      <section className = "section">
-      <div className = "textContainer">
-      <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
-      <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
-      <BaseButton
-      children = "Sign Up"/>
-      </div>
-      <div style ={{marginTop: '2.5rem'}}>
-      <HomePageSearchBar/>
-      </div>
-      </section>
-      <section className = "section">
-      <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
-      <PropertyCard/>
-      <PropertyCard/>
-      <PropertyCard/>
-      </div>
-      </section>  
-
-      <section className = "section" style={{display: 'flex', flexDirection: 'column',gap: '3.75rem'}}>
-        <div style={{textAlign: 'center'}}>
-        <h1 className="headerText">Why Choose Us</h1>
-        <h2 className="subHeaderText">Ensuring your subletting experience, whether subleaser or <br />sublease, is seamless, secure, and stress-free.</h2>
-        </div>
-       <div className={styles.infoCardGrid}>
-      <InfoCard/>
-      <InfoCard
-
-    image = "src/images/service.png"
-    title = "Personalized Service"
-    description = "This service was built by students, for students, by students, taking into account your needs and experiences."
-      />
-      <InfoCard
-
-    image = "src/images/process.png"
-    title = "Transparent Process"
-    description = "Stay informed with our clear and honest approach to buying your home."
-      />
-      <InfoCard
-
-    image = "src/images/exceptional-service.png"
-    title = "Exceptional Support"
-    description = "Providing peace of mind with our responsive and attentive customer service."
-      />
-      </div>
-      </section>
-      <section className="section">
-      <div style={{textAlign: 'center'}}>
-      <h1 className="headerText">What People Say</h1>
-      </div>
-      <div className={styles.cardGrid}>
-      <ReviewCard/>
-      <ReviewCard
-      name="Michael Rodriguez"
-      imageSrc="src/images/review-image-michael.png"
-      review="src/images/four-and-half-star-review.png"
-      headshot='src/images/review-michael-headshot.png'
-      location='San Diego'/>
-      <ReviewCard
-      name="Emily Johnson"
-      imageSrc='src/images/review-image-emily.png'
-      headshot='src/images/review-emily-headshot.png'
-      location="Los Angeles"/>
-      </div>
-
-      </section>
-      </div>
-</>
+  return(
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/help" element={<Help />} />
+        </Route>
+    </Routes>
   )
 }
 
-export default App
+export default App;

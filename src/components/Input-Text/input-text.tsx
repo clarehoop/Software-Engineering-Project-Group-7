@@ -23,7 +23,7 @@ function FormTextComponent({
     height = 'auto'
 }: FormTextComponentProps){
   return (
-   <div style={{position: 'relative', display: 'inline-block', width, height}}>
+   <div style={{position: 'relative', display: 'inline-flex', width, height, overflow: 'visible'}}>
       <Form.Control placeholder={placeholder}
       className = {`bootstrap-scope ${styles.container}`}
         type="text"
@@ -31,6 +31,8 @@ function FormTextComponent({
           "--input-color": color,
           "--input-bg": backgroundColor,
           height: "100%",
+          width: "100%",
+          paddingRight: icon ? '2.5rem' : undefined
         } as React.CSSProperties}
       />
       {icon && (
@@ -39,7 +41,8 @@ function FormTextComponent({
           right: '0.75rem',
           top: '50%',
           transform: 'translateY(-50%)',
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          zIndex: 1,
         }}>
           <img src={icon} width={16} height={16} />
     </div>

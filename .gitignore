@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 .firebase/
 .scripts/
-src/styles
+git add src/styles/bootstrap-scoped.css

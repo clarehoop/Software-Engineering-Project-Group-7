@@ -133,6 +133,13 @@ body {
     width: 70%;
     margin: 0 auto;
   }
+
+.ReviewCardContainer  {
+    max-width: 100%;  
+    width: 70%;
+    margin: 0 auto;
+  }
+
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {

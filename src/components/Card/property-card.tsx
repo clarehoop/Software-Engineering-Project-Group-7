@@ -14,6 +14,7 @@ interface BaseCardProps {
   roomsIcon?: string;
   buttonText?: ReactNode;
   buttonVariant?: string;
+  showButton?: boolean;
   onButtonClick?: () => void;
 }
 
@@ -28,6 +29,7 @@ function PropertyCard({
   roomsIcon = "src/images/rooms.png",
   locationIcon = "src/images/location.png",
   buttonVariant = "primary",
+  showButton = true,
   onButtonClick
 }: BaseCardProps) {
   return (
@@ -51,9 +53,11 @@ function PropertyCard({
         </div>
         </div>
         <div style ={{display: 'flex', alignItems: 'center', paddingLeft: '0.625rem', paddingRight: '0.625rem', justifyContent: 'space-between'}}>
+          {showButton && (
         <BaseButton variant={buttonVariant} onClick={onButtonClick}>
           {buttonText}
         </BaseButton>
+          )}
         <div style ={{marginLeft: 'auto'}}>
         <Card.Text className = {styles.PropertyCardText}>{price}</Card.Text>
         </div>

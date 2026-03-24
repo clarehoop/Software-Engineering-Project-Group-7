@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-function SearchBar(){
+function SearchButton(){
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -36,7 +36,7 @@ function SearchBar(){
   );
 }
 
-export default SearchBar;
+export default SearchButton;
 
 
 

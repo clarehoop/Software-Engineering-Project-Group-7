@@ -11,6 +11,8 @@ interface FormTextComponentProps {
   borderRadius?: string;
   width?: string;
   height?: string;
+  border?: string;
+  minHeight?: string;
 }
 function FormTextComponent({
     placeholder = "Price Range",
@@ -18,9 +20,11 @@ function FormTextComponent({
     icon,
     color,
     backgroundColor,
-    borderRadius = "12px",
+    borderRadius = "0px",
     width = "100%",
-    height = 'auto'
+    height = 'auto',
+    border,
+    minHeight,
 }: FormTextComponentProps){
   return (
    <div style={{position: 'relative', display: 'inline-flex', width, height, overflow: 'visible'}}>
@@ -32,7 +36,11 @@ function FormTextComponent({
           "--input-bg": backgroundColor,
           height: "100%",
           width: "100%",
-          paddingRight: icon ? '2.5rem' : undefined
+          paddingRight: icon ? '2.5rem' : undefined,
+          boxSizing: 'border-box',
+          border,
+          borderRadius,
+          minHeight
         } as React.CSSProperties}
       />
       {icon && (

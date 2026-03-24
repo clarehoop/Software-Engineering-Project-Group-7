@@ -5,9 +5,13 @@ import styles from '../components/Card/card.module.css';
 import HomePageSearchBar from '../components/Home-Page-Search-Bar/search-bar';
 import ReviewCard from '../components/Card/review-card';
 import FormTextComponent from '../components/Input-Text/input-text';
+import SignUpRedirect from '../hooks/sign-up-redirect';
 import'./pages.css'
 
 function Home(){
+
+    const handleSignUpClick = SignUpRedirect();
+
     return( 
       <div className = "pageContent" id="home">
       <section className = "section">
@@ -15,7 +19,8 @@ function Home(){
       <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
       <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
       <BaseButton
-      children = "Sign Up"/>
+      children = "Sign Up"
+      onClick={handleSignUpClick}/>
       </div>
       <div style ={{marginTop: '2.5rem'}}>
       <HomePageSearchBar/>

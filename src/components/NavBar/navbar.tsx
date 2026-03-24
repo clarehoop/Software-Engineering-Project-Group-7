@@ -5,7 +5,7 @@ import '../../styles/bootstrap-scoped.css';
 import navBarStyles from './navbar.module.css'
 import BaseButton from '../Button/button';
 import { NavLink } from 'react-router-dom';
-import SearchBar from '../Search-Button/search-button';
+import SearchButton from '../Search-Button/search-button';
 
 function NavBar() {
   return (
@@ -16,14 +16,14 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className={"mx-auto " + navBarStyles.navBarText}>
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
-            <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
+            <Nav.Link as={NavLink} to="/listings">Listings</Nav.Link>
             <Nav.Link as={NavLink} to="/about">About</Nav.Link>
             <Nav.Link as={NavLink} to="/help">Help</Nav.Link> 
           </Nav>
         </Navbar.Collapse>
         <div className = {navBarStyles.navBarSection}>
-    <SearchBar/>
-    <img src="src/images/navbar-profile.png"/>
+    <SearchButton/>
+   { /* <img src="src/images/navbar-profile.png"/> */ }
     
         <BaseButton 
         children ="Sign In"/>

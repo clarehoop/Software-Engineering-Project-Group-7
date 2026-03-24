@@ -20,6 +20,7 @@ function HomePageSearchBar() {
     <div className={styles.item}>
     <FormTextComponent
     placeholder='Location'
+    borderRadius="12px"
     icon="src/images/location.png"/>
     </div>
   </div>

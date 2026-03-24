@@ -15,6 +15,15 @@ html, body {
   text-align: left;
 }
 
+.signInPage .textContainer {
+  text-align: left;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: fit-content;
+
+}
+
 .headerText {
   font-size: clamp(2rem, 4vw + 1rem, 4.25rem);
   font-family: "Montserrat", sans-serif;
@@ -23,11 +32,21 @@ html, body {
   line-height: 1.0;
 }
 
+.signInPage .headerText {
+    white-space: nowrap;
+}
+
 .subHeaderText {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   color: #000;
   font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.signUpSubHeaderText {
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
 }
 
 /* ------------Page Styling CSS------------ */
@@ -60,6 +79,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100;
   }
 }
 
@@ -69,10 +89,40 @@ html, body {
   padding: 5rem 0;
 }
 
+.signInPage .section{
+    padding: 20rem 0;
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 2.5rem 0;
   }
 }
 
+@media (max-width: 768px) {
+  .signInPage .section {
+    padding: 5rem 0;
+  }
+}
 
+.rowSection {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .rowSection {
+    padding: 5rem 0;
+    flex-direction: column;
+  }
+}
+
+/* ------------Input Form CSS------------ */
+
+.inputFormContainer{
+
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+}

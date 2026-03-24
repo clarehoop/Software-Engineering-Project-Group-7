@@ -20,7 +20,7 @@ html, body {
   display: inline-flex;
   flex-direction: column;
   align-items: stretch;
-  width: fit-content;
+  width: 100%;
 
 }
 
@@ -33,7 +33,7 @@ html, body {
 }
 
 .signInPage .headerText {
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .subHeaderText {
@@ -89,9 +89,6 @@ html, body {
   padding: 5rem 0;
 }
 
-.signInPage .section{
-    padding: 20rem 0;
-}
 
 @media (max-width: 768px) {
   .section {
@@ -109,12 +106,26 @@ html, body {
     display: flex;
     flex-direction: row;
     gap: 2.5rem;
+    align-items: flex-start;
 }
+
+.rowSection > * {
+  flex: 1;                    
+  min-width: 0;               
+}
+
+@media(max-width: 1024px) {
+    .rowSection {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+}
+
 
 @media (max-width: 768px) {
   .rowSection {
     padding: 5rem 0;
-    flex-direction: column;
   }
 }
 
@@ -125,4 +136,100 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 0rem;
+}
+
+/* ------------Sign On Page CSS------------ */
+
+.signInPage .section{
+    padding: 10rem 0;
+}
+
+.signInPage .signUpSubHeaderText{
+    opacity: 60%;
+}
+
+@media (max-width: 768px) {
+  .signInPage .section {
+    padding: 5rem 0;
+  }
+}
+
+.rememberForgotRow {
+  display: flex;
+  justify-content: space-between;
+  opacity: 60%;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.rememberMe {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.cardContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.inputGroup{
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+  .inputGroup {
+    width: fit-content;     
+    align-self: center;     
+  }
+
+  .inputGroup .signUpSubHeaderText {
+    white-space: nowrap;    
+  }
+}
+
+/* Tablet Sizing */
+
+@media (max-width: 1024px) {
+  .signInPage .section {
+    padding: 7.5rem 0;
+  }
+
+  .signInPage .headerText {
+    white-space: normal;     
+  }
+
+  .signInPage .textContainer {
+    width: 100%;              
+  }
+}
+
+/* Mobile Sizing */
+
+@media (max-width: 768px) {
+  .signInPage .section {
+    padding: 3rem 0;
+  }
+
+  .signInPage .textContainer {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rememberForgotRow {
+    flex-direction: row;  
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cardContainer {
+    width: 100%;
+  }
 }

@@ -1,5 +1,5 @@
 import { db } from '../firebase'
-import { collection, doc, getDoc, getDocs, addDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, addDoc, deleteDoc } from 'firebase/firestore'
 import { AppUser, Listing } from 'types/user'
 
 // Returns a list of all users
@@ -28,17 +28,44 @@ export const getListings = async (userId: string): Promise<Listing[]> => {
 }
 
 // Creates a user
-export const createUser = async (user: AppUser): Promise<AppUser> => {
-  const { listings, ...userData } = user;
+export const createUser = async (
+  username: string,
+  password: string,
+  first_name: string,
+  last_name: string,
+  date_of_birth: Date,
+  email: string,
+  phone_num: string,
+  is_landlord: Boolean,
+  is_admin: Boolean,
+  date_created: Date): Promise<AppUser> => {
+  const user = {
+    username: username,
+    password: password,
+    first_name: first_name,
+    last_name: last_name,
+    date_of_birth: date_of_birth,
+    email: email,
+    phone_num: phone_num,
+    is_landlord: is_landlord,
+    is_admin: is_admin,
+    date_created: date_created,
+  } as AppUser;
   
-  const userRef = await addDoc(collection(db, 'users'), userData);
-
-  if (userData.is_landlord && listings?.length) {
-    await Promise.all(listings.map(async listing => 
-      addDoc(collection(db, 'users', userRef.id, 'listings'), listing)
-    ));
-  };
+  const userRef = await addDoc(collection(db, 'users'), user);
 
   return getUserById(userRef.id);
 }
 
+// Deletes a user and all its listings
+export const removeUserById = async (userId: string): Promise<void> => {
+  const user = await getUserById(userId);
+  
+  if (user.listings?.length) {
+    await Promise.all(user.listings.map(listing => {
+      deleteDoc(doc(db, 'users', userId, 'listings', listing.id))
+    }))
+  }
+
+  const userSnapshot = await deleteDoc(doc(db, 'users', userId));
+}

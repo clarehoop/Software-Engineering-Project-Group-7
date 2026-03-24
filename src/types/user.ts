@@ -13,6 +13,7 @@ export interface AppUser {
 }
 
 export interface Listing {
+  id: string;
   address: string;
   city: string;
   country: string;

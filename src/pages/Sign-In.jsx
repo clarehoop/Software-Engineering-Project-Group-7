@@ -4,7 +4,12 @@ import PropertyCard from '../components/Card/property-card';
 import Checkbox from '../components/Check-Box/checkbox';
 import'./pages.css'
 
-function SignIn() {
+import * as UserService from '../services/userService'; // Example service import
+
+async function SignIn() {
+  const users = await UserService.getUsers(); // Example service function call
+  users;
+
   return (
     <div className="pageContent signInPage">
     <section className="section">

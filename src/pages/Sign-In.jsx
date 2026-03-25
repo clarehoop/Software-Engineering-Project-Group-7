@@ -4,7 +4,7 @@ import PropertyCard from '../components/Card/property-card';
 import Checkbox from '../components/Check-Box/checkbox';
 import'./pages.css'
 
-import * as UserService from 'services/userService'; // Example service import
+import * as UserService from '../services/userService'; // Example service import
 
 async function SignIn() {
   const users = await UserService.getUsers(); // Example service function call

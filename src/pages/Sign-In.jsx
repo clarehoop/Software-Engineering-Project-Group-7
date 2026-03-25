@@ -16,6 +16,7 @@ async function SignIn() {
     <section className="rowSection">
     <div className="textContainer">
     <h1 className="headerText">Don't wait to get your sublet...</h1>
+    <div className="inputGroup">
     <p className="signUpSubHeaderText" style={{opacity: '60%'}}>Welcome back! Please login to your account.</p>    
     <div className="inputFormContainer">
     <FormTextComponent
@@ -30,18 +31,19 @@ async function SignIn() {
     borderRadius='0px'
     minHeight="5rem"/>
     </div>
-    <div style ={{display: 'flex', justifyContent: 'space-between',opacity: '60%', gap: '0.75rem'}}>
-    <div style={{display: 'flex', flexDirection: 'row', gap: '0.25rem', alignItems: 'center'}}>
+    <div className='rememberForgotRow'>
+    <div className='rememberMe'>
     <Checkbox/>
-    <p>Remember Me</p>
+    <p className='signUpSubHeaderText'>Remember Me</p>
     </div>
-    <p>Forgot Password?</p>
+    <p className='signUpSubHeaderText'>Forgot Password?</p>
     </div>
     </div>
-    <div style= {{display: 'flex',width: '100%', alignItems: 'center', flexDirection: 'column', gap: '2.5rem'}}>
+    </div>
+    <div className='cardContainer'>
     <PropertyCard
     showButton={false}/>
-    <p className="signUpSubHeaderText" style={{opacity: '60%'}}>Hurry! Don't miss out on this sublet!</p>
+    <p className="signUpSubHeaderText">Hurry! Don't miss out on this sublet!</p>
     </div>
     </section>
     </section>

@@ -1,5 +1,6 @@
-import { db } from '../firebase'
-import { collection, doc, getDoc, getDocs, addDoc, deleteDoc } from 'firebase/firestore'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { db, auth } from '../firebase'
+import { collection, doc, getDoc, getDocs, setDoc, deleteDoc } from 'firebase/firestore'
 import { AppUser, Listing } from 'types/user'
 
 // Returns a list of all users
@@ -11,6 +12,23 @@ export const getUsers = async (): Promise<AppUser[]> => {
       return {listings: userListings, ...doc.data()} as AppUser;
     })
   );
+}
+
+// Returns the user signed in, null if credentials incorrect
+export const signInUser = async (email: string, password: string): Promise<AppUser | null> => {
+  return await signInWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+      return await getUserById(userCredential.user.uid);
+    })
+    .catch((error) => { return null; });
+}
+
+// Get user that is currently signed in
+export const getCurrentUser = async (): Promise<AppUser | null> => {
+  const user = auth.currentUser;
+
+  if (user == null) return null;
+  return getUserById(user.uid);
 }
 
 // Returns a list of one user
@@ -50,11 +68,13 @@ export const createUser = async (
     is_landlord: is_landlord,
     is_admin: is_admin,
     date_created: date_created,
-  } as AppUser;
-  
-  const userRef = await addDoc(collection(db, 'users'), user);
+  } as Omit<AppUser, 'id'>;
 
-  return getUserById(userRef.id);
+  const credential = await createUserWithEmailAndPassword(auth, email, password);
+  
+  await setDoc(doc(db, 'users', credential.user.uid), user);
+
+  return getUserById(credential.user.uid);
 }
 
 // Deletes a user and all its listings

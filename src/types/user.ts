@@ -1,4 +1,5 @@
 export interface AppUser {
+  id: string;
   username: string;
   password: string;
   first_name: string;

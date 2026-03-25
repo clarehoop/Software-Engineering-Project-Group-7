@@ -29,3 +29,4 @@ git add src/styles/bootstrap-scoped.css
 # Environment Variables
 *.env
 *.env.*
+!.env.example

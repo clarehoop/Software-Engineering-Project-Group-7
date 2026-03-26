@@ -43,6 +43,11 @@ html, body {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
 }
 
+.signUpPage .subHeaderText {
+    font-weight: 400;
+    opacity: 60%;
+}
+
 .signUpSubHeaderText {
     font-weight: 400;
     font-family: "Montserrat", sans-serif;
@@ -232,4 +237,33 @@ html, body {
   .cardContainer {
     width: 100%;
   }
+}
+
+/* Button Styling */
+
+.signInButtonRow {
+  display: flex;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+.signInPage .signInButtonRow {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px){
+  .signUpPage .signInButtonRow {
+    gap: 1.125rem;
+  }
+}
+
+/* ------------Checkbox CSS------------ */
+
+.userTypeRow {
+  display: flex;
+  flex-direction: row;
+  gap: 1.125rem;
+
 }

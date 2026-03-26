@@ -4,10 +4,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import '../../styles/bootstrap-scoped.css';
 import navBarStyles from './navbar.module.css'
 import BaseButton from '../Button/button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import SearchButton from '../Search-Button/search-button';
 
 function NavBar() {
+
+  const location = useLocation();
+  const hideButtonOn = ['/sign-in', '/sign-up']
+  const showButton = !hideButtonOn.includes(location.pathname);
+
   return (
     <div className = "bootstrap-scope">
     <Navbar expand="lg" className={navBarStyles.navBar}>
@@ -25,8 +30,7 @@ function NavBar() {
     <SearchButton/>
    { /* <img src="src/images/navbar-profile.png"/> */ }
     
-        <BaseButton 
-        children ="Sign In"/>
+        {showButton &&<BaseButton children ="Sign In"/>}
         </div>
       </Container>
     </Navbar>

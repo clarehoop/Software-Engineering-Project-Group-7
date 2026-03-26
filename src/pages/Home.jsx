@@ -5,12 +5,12 @@ import styles from '../components/Card/card.module.css';
 import HomePageSearchBar from '../components/Home-Page-Search-Bar/search-bar';
 import ReviewCard from '../components/Card/review-card';
 import FormTextComponent from '../components/Input-Text/input-text';
-import SignUpRedirect from '../hooks/sign-up-redirect';
+import useRedirect from '../hooks/useRedirect';
 import'./pages.css'
 
 function Home(){
 
-    const handleSignUpClick = SignUpRedirect();
+    const redirect = useRedirect();
 
     return( 
       <div className = "pageContent" id="home">
@@ -20,7 +20,7 @@ function Home(){
       <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
       <BaseButton
       children = "Sign Up"
-      onClick={handleSignUpClick}/>
+      onClick={()=> redirect("/sign-in")}/>
       </div>
       <div style ={{marginTop: '2.5rem'}}>
       <HomePageSearchBar/>

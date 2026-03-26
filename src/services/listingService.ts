@@ -1,5 +1,5 @@
 import { db } from '../firebase'
-import { getDocs, collection, collectionGroup, doc, getDoc, setDoc, addDoc } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, doc, getDoc, setDoc, addDoc, GeoPoint } from 'firebase/firestore'
 import { Listing } from 'types/user'
 
 // Returns all listings
@@ -35,6 +35,8 @@ export const createListing = async (
   beds: Number,
   baths: Number,
   price: Number): Promise<Listing> => {
+  const geoCoord = new GeoPoint(0, 0); // TODO Implement logic here or in page??
+  
   const listing = {
     address: address,
     city: city,
@@ -49,7 +51,7 @@ export const createListing = async (
     beds: beds,
     baths: baths,
     price: price,
-    coordinates: new GeolocationCoordinates() // TODO Implement logic here or in page??
+    coordinates: geoCoord
   } as Omit<Listing, 'id'>;
 
   const listRef = await addDoc(collection(db, 'users', userId, 'listing'), listing);

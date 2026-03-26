@@ -1,3 +1,5 @@
+import { GeoPoint } from "firebase/firestore";
+
 export interface AppUser {
   id: string;
   username: string;
@@ -28,5 +30,5 @@ export interface Listing {
   beds: Number;
   baths: Number;
   price: Number;
-  coordinates: GeolocationCoordinates;
+  coordinates: GeoPoint;
 }

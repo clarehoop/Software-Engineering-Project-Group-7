@@ -6,6 +6,7 @@ import About from './pages/About';
 import Help from './pages/Help';
 import SignIn from './pages/Sign-In';
 import Listings from './pages/Listings';
+import PropertyDetail from './pages/PropertyDetail';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/help" element={<Help />} />
         <Route path ="/sign-in" element ={<SignIn />}/>
+        <Route path="/property/:id" element={<PropertyDetail />} />
         </Route>
     </Routes>
   )

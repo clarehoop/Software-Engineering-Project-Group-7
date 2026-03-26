@@ -10,6 +10,8 @@ interface FormTextComponentProps {
   backgroundColor?: string;
   borderRadius?: string;
   width?: string;
+  value?: string;
+  onChange?:(e: React.ChangeEvent<HTMLInputElement>) => void;
   height?: string;
   border?: string;
   minHeight?: string;
@@ -25,10 +27,14 @@ function FormTextComponent({
     height = 'auto',
     border,
     minHeight,
+    value,
+    onChange,
 }: FormTextComponentProps){
   return (
    <div style={{position: 'relative', display: 'inline-flex', width, height, overflow: 'visible'}}>
       <Form.Control placeholder={placeholder}
+      value={value}
+      onChange={onChange}
       className = {`bootstrap-scope ${styles.container}`}
         type="text"
         style={{

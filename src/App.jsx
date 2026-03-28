@@ -7,6 +7,7 @@ import SignIn from './pages/Sign-In';
 import SignUp from './pages/Sign-Up';
 import Listings from './pages/Listings';
 import PropertyDetail from './pages/PropertyDetail';
+import PostListing from './pages/PostListing';
 import './App.css'; 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path ="/sign-in" element ={<SignIn />}/>
         <Route path="/sign-up" element ={<SignUp />}/>
         <Route path="/property/:id" element={<PropertyDetail />} />
+        <Route path="/post" element={<PostListing />} />
         </Route>
     </Routes>
   )

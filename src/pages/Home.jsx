@@ -23,6 +23,11 @@ function Home(){
       onClick={()=> redirect("/sign-in")}/>
       </div>
       <div style ={{marginTop: '2.5rem'}}>
+      <BaseButton
+      children = "Create a Listing"
+      onClick={()=> redirect("/post")}/>
+      </div>
+      <div style ={{marginTop: '2.5rem'}}>
       <HomePageSearchBar/>
       </div>
       </section>

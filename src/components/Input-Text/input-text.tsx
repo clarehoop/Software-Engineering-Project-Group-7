@@ -11,6 +11,9 @@ interface FormTextComponentProps {
   backgroundColor?: string;
   borderRadius?: string;
   width?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onValueChange?: (value: string) => void;
   height?: string;
   border?: string;
   minHeight?: string;
@@ -18,76 +21,63 @@ interface FormTextComponentProps {
   type?: string;
   label?: string;
   fontWeight?: string;
-  value?: string;
-  onChange?: (val: string) => void;
 }
 
-
-
 function FormTextComponent({
-    placeholder = "Price Range",
-    image,
-    icon,
-    color,
-    backgroundColor,
-    borderRadius = "0px",
-    width = "100%",
-    height = 'auto',
-    border,
-    minHeight,
-    type,
-    label,
-}: FormTextComponentProps){
+  placeholder = "Price Range",
+  image,
+  icon,
+  color,
+  backgroundColor,
+  borderRadius = "0px",
+  width = "100%",
+  height = 'auto',
+  border,
+  minHeight,
+  type,
+  label,
+  value,
+  onChange,
+  onValueChange
+}: FormTextComponentProps) {
 
-  const [dateValue, setDateValue] = useState('');
-  const [dateFocused, setDateFocused] = useState(false);
+  const isDate = type === 'date';
 
+  const [isFocused, setIsFocused] = useState(false);
+
+  const resolvedType = type === 'date' && !isFocused && !value ? 'text' : type;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  onChange?.(e);
+  onValueChange?.(e.target.value); 
+};
 
   return (
-   <div style={{position: 'relative', display: 'inline-flex', width, height, overflow: 'visible'}}>
-
-
-    {type === 'date' && label && !dateValue && !dateFocused && (
-        <span style={{
-          position: 'absolute',
-          left: '0.75rem',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          pointerEvents: 'none',
-          zIndex: 1,
-          fontWeight: 'bold',         
-          fontSize: '1rem',
-          color: color ?? '#000',
-        }}>
-          {label}
-        </span>
-      )}
-
-
-    {/* Styling the container */}
-      
-      <Form.Control placeholder={placeholder}
-      className = {`bootstrap-scope ${styles.container}`}
-        type={type}
-        value={type === 'date' ? dateValue : undefined}        
-        onChange={e => { if (type === 'date') setDateValue(e.target.value); }}
-        onFocus={() => { if (type === 'date') setDateFocused(true); }}
-        onBlur={() => { if (type === 'date') setDateFocused(false); }}
+    <div style={{ position: 'relative', display: 'inline-flex', width, height, overflow: 'visible' }}>
+      <Form.Control
+        placeholder={placeholder}
+        className={`bootstrap-scope ${styles.container}`}
+        type={resolvedType}
+        value={value ?? ''}
+        onChange={handleChange}
+        onFocus={()=>{
+          if (type === 'date') setIsFocused(true);
+        }}
+        onBlur={()=> {
+          if (type === 'date' && !value) setIsFocused(false);
+        }}
         style={{
           "--input-color": color,
           "--input-bg": backgroundColor,
           height: "100%",
           width: "100%",
           paddingRight: icon ? '2.5rem' : undefined,
-          color: type == 'date' && !dateValue ? 'transparent': undefined,
           boxSizing: 'border-box',
           border,
           borderRadius,
-          minHeight
+          minHeight,
         } as React.CSSProperties}
       />
-
-      {/* Styling the icon */}
 
       {icon && (
         <div style={{
@@ -99,7 +89,7 @@ function FormTextComponent({
           zIndex: 1,
         }}>
           <img src={icon} width={16} height={16} />
-    </div>
+        </div>
       )}
     </div>
   );

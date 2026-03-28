@@ -1,9 +1,9 @@
-import { Form } from 'react-router-dom';
 import FormTextComponent from '../components/Input-Text/input-text';
 import Checkbox from '../components/Check-Box/checkbox';
-import { useSignUp } from 'hooks/useSignUp';
+import { useSignUp } from '../hooks/useSignUp';
 import'./pages.css'
 import BaseButton from '../components/Button/button';
+
 
 function SignUp() {
 
@@ -23,7 +23,7 @@ function SignUp() {
 
     <FormTextComponent
     value={form.username}
-    onChange={(val) => handleChange('username', val)}
+    onValueChange={(val) => handleChange('username', val)}
     placeholder='User Name'
     border = "1px solid #000000"
     borderRadius='0px'
@@ -32,7 +32,7 @@ function SignUp() {
 
     <FormTextComponent
     value={form.password}
-    onChange={(val) => handleChange('password', val)}
+    onValueChange={(val) => handleChange('password', val)}
     placeholder='Password'
     type='password'
     border = "1px solid #000000"
@@ -42,7 +42,7 @@ function SignUp() {
 
     <FormTextComponent
     value={form.confirmPassword}
-    onChange={(val) => handleChange('confirmPassword', val)}
+    onValueChange={(val) => handleChange('confirmPassword', val)}
     placeholder='Confirm Password'
     type="password"
     border = "1px solid #000000"
@@ -53,7 +53,7 @@ function SignUp() {
     <FormTextComponent
     placeholder='First Name'
     value={form.first_name}
-    onChange={(val) => handleChange('first_name', val)}
+    onValueChange={(val) => handleChange('first_name', val)}
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
@@ -61,8 +61,8 @@ function SignUp() {
 
     <FormTextComponent
     placeholder='Last Name'
-    value={form.first_name}
-    onChange={(val) => handleChange('last_name', val)}
+    value={form.last_name}
+    onValueChange={(val) => handleChange('last_name', val)}
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
@@ -71,7 +71,7 @@ function SignUp() {
     <FormTextComponent
     label="Date of Birth"
     value={form.date_of_birth}
-    onChange={(val) => handleChange('last_name', val)}
+    onValueChange={(val) => handleChange('date_of_birth', val)}
     placeholder='Date of Birth'
     type="date"
     border = "1px solid #000000"
@@ -81,6 +81,8 @@ function SignUp() {
 
     <FormTextComponent
     placeholder='Email'
+    value={form.email}
+    onValueChange={(val) => handleChange('email', val)}
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
@@ -88,6 +90,8 @@ function SignUp() {
 
     <FormTextComponent
     placeholder='Phone Number'
+    value={form.phone_num}
+    onValueChange={(val) => handleChange('phone_num', val)}
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
@@ -95,19 +99,26 @@ function SignUp() {
 
     <div className='userTypeRow'>
     <div className='rememberMe'>
-    <Checkbox/>
+    <Checkbox
+    checked={form.is_student}
+    onChange={(checked) => handleChange('is_student', checked)}/>
     <p className='signUpSubHeaderText'>Student</p>
     </div>
     <div className='rememberMe'>
-    <Checkbox/>
+    <Checkbox
+    checked={form.is_landlord}
+    onChange={(checked) => handleChange('is_landlord', checked)}/>
     <p className='signUpSubHeaderText'>Landlord</p>
     </div>
     </div>
+
+    {error && <p className='errorText'>{error}</p>} {/*TODO add errorText*/}
+
     <section className='section'>
     <div className="signInButtonRow">
-     <BaseButton
+     <BaseButton onClick={handleSubmit} 
      children="Submit"/>
-     <BaseButton
+     <BaseButton onClick = {() => window.history.back()}
      children="Cancel"/> 
     </div>
 

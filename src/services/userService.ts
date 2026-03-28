@@ -68,6 +68,7 @@ export const createUser = async (
     is_landlord: is_landlord,
     is_admin: is_admin,
     date_created: date_created,
+    listings: []
   } as Omit<AppUser, 'id'>;
 
   const credential = await createUserWithEmailAndPassword(auth, email, password);

@@ -4,9 +4,10 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Help from './pages/Help';
 import SignIn from './pages/Sign-In';
-import Listings from './pages/Listings';
 import SignUp from './pages/Sign-Up';
-import './App.css';
+import Listings from './pages/Listings';
+import PropertyDetail from './pages/PropertyDetail';
+import './App.css'; 
 
 function App() {
   return(
@@ -18,6 +19,7 @@ function App() {
         <Route path="/help" element={<Help />} />
         <Route path ="/sign-in" element ={<SignIn />}/>
         <Route path="/sign-up" element ={<SignUp />}/>
+        <Route path="/property/:id" element={<PropertyDetail />} />
         </Route>
     </Routes>
   )

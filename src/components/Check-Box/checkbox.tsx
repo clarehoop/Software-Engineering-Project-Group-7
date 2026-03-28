@@ -5,10 +5,13 @@ interface CheckboxProps {
   onChange?: (val: boolean) => void;
 }
 
-function Checkbox() {
+function Checkbox({ checked, onChange}: CheckboxProps) {
   return (
     <>
-      <Form.Check aria-label="Remember Me" />
+      <Form.Check aria-label="Remember Me" 
+      checked={checked}
+      onChange={(e) => onChange?.(e.target.checked)}
+      />
     </>
   );
 }

@@ -21,11 +21,11 @@ function Listings() {
         let q;
   
         if (locationQuery) {
-          // 🔍 Search mode: Filter by location
+          //Search mode: Filter by location
           // Note: Make sure your DB casing matches (e.g., "Clifton" vs "clifton")
           q = query(listingsRef, where("location", "==", locationQuery));
         } else {
-          // 🏠 Default mode: Show all listings
+          //Default mode: Show all listings
           q = query(listingsRef); 
         }
   
@@ -46,7 +46,7 @@ function Listings() {
     fetchSublets();
   }, [locationQuery]); // Still triggers if the user searches while on the page
 
-  // Handle clicking into a specific sublet (Zillow style)
+  // Handle clicking into a specific sublet 
   const handleCardClick = (id) => {
     navigate(`/property/${id}`);
   };

@@ -17,10 +17,18 @@ function Listings() {
     const fetchSublets = async () => {
       setLoading(true);
       try {
-        const subletsRef = collection(db, "listings");
-        // Queries Firestore for documents where 'location' field matches
-        const q = query(subletsRef, where("location", "==", locationQuery.toLowerCase()));
-        
+        const listingsRef = collection(db, "listings");
+        let q;
+  
+        if (locationQuery) {
+          // 🔍 Search mode: Filter by location
+          // Note: Make sure your DB casing matches (e.g., "Clifton" vs "clifton")
+          q = query(listingsRef, where("location", "==", locationQuery));
+        } else {
+          // 🏠 Default mode: Show all listings
+          q = query(listingsRef); 
+        }
+  
         const querySnapshot = await getDocs(q);
         const results = querySnapshot.docs.map(doc => ({ 
           id: doc.id, 
@@ -34,9 +42,9 @@ function Listings() {
         setLoading(false);
       }
     };
-
-    if (locationQuery) fetchSublets();
-  }, [locationQuery]);
+  
+    fetchSublets();
+  }, [locationQuery]); // Still triggers if the user searches while on the page
 
   // Handle clicking into a specific sublet (Zillow style)
   const handleCardClick = (id) => {

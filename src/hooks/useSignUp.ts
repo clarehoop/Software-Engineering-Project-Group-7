@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createUser } from "../services/userService";
-import { useNavigate } from "react-router-dom";
 import useRedirect from "./useRedirect";
 
 

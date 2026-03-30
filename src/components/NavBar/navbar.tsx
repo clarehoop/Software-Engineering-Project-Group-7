@@ -6,8 +6,12 @@ import navBarStyles from './navbar.module.css'
 import BaseButton from '../Button/button';
 import { NavLink, useLocation } from 'react-router-dom';
 import SearchButton from '../Search-Button/search-button';
+import useRedirect from '../../hooks/useRedirect';
+
 
 function NavBar() {
+
+  const redirect = useRedirect();
 
   const location = useLocation();
   const hideButtonOn = ['/sign-in', '/sign-up']
@@ -30,7 +34,7 @@ function NavBar() {
     <SearchButton/>
    { /* <img src="src/images/navbar-profile.png"/> */ }
     
-        {showButton &&<BaseButton children ="Sign In"/>}
+        {showButton &&<BaseButton children ="Sign In" onClick={()=> redirect("/sign-in")}/>}
         </div>
       </Container>
     </Navbar>

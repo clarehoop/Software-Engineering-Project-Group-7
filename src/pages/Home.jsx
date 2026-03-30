@@ -18,16 +18,16 @@ function Home(){
       <div className = "textContainer">
       <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
       <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
+      <div className='buttonRow'>
       <BaseButton
       children = "Sign Up"
-      onClick={()=> redirect("/sign-in")}/>
-      </div>
-      <div style ={{marginTop: '2.5rem'}}>
+      onClick={()=> redirect("/sign-in")}/>     
       <BaseButton
       children = "Create a Listing"
       onClick={()=> redirect("/post")}/>
       </div>
-      <div style ={{marginTop: '2.5rem'}}>
+      </div>
+      <div style ={{marginTop: '1.125rem'}}>
       <HomePageSearchBar/>
       </div>
       </section>

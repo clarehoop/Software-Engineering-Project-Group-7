@@ -49,10 +49,10 @@ export const createListing = async (
     beds: beds,
     baths: baths,
     price: price,
-    coordinates: new GeolocationCoordinates() // TODO Implement logic here or in page??
+    coordinates: null, //new GeolocationCoordinates() // TODO Implement logic here or in page?? //Collins: throwing null until implemented
   } as Omit<Listing, 'id'>;
 
-  const listRef = await addDoc(collection(db, 'users', userId, 'listing'), listing);
+  const listRef = await addDoc(collection(db, 'users', userId, 'listings'), listing);
 
   return getListingById(listRef.id);
 };

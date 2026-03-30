@@ -4,6 +4,7 @@ import styles from './input-text.module.css';
 import { ReactNode, useState } from 'react';
 
 interface FormTextComponentProps {
+  name?: string;
   placeholder?: string;
   image?: ReactNode;
   icon?: string;
@@ -24,6 +25,7 @@ interface FormTextComponentProps {
 }
 
 function FormTextComponent({
+  name,
   placeholder = "Price Range",
   image,
   icon,
@@ -55,6 +57,7 @@ function FormTextComponent({
   return (
     <div style={{ position: 'relative', display: 'inline-flex', width, height, overflow: 'visible' }}>
       <Form.Control
+        name={name}
         placeholder={placeholder}
         className={`bootstrap-scope ${styles.container}`}
         type={resolvedType}

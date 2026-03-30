@@ -37,7 +37,7 @@ export const getUserById = async (userId: string): Promise<AppUser | null> => {
   if (!snapshot.exists()) return null;
 
   const userListings = await getListings(userId);
-  return {listings: userListings, ...snapshot.data()} as AppUser;
+  return {id: snapshot.id, listings: userListings, ...snapshot.data()} as AppUser;
 }
 
 export const getListings = async (userId: string): Promise<Listing[]> => {

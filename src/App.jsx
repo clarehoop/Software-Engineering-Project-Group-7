@@ -8,10 +8,12 @@ import SignUp from './pages/Sign-Up';
 import Listings from './pages/Listings';
 import PropertyDetail from './pages/PropertyDetail';
 import PostListing from './pages/PostListing';
+import { AuthProvider } from './context/Auth';
 import './App.css'; 
 
 function App() {
   return(
+    <AuthProvider>
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
@@ -24,6 +26,7 @@ function App() {
         <Route path="/post" element={<PostListing />} />
         </Route>
     </Routes>
+    </AuthProvider>
   )
 }
 

@@ -7,10 +7,13 @@ import BaseButton from '../Button/button';
 import { NavLink, useLocation } from 'react-router-dom';
 import SearchButton from '../Search-Button/search-button';
 import useRedirect from '../../hooks/useRedirect';
+import { NavDropdown } from 'react-bootstrap';
+import { useAuth } from '../../context/Auth';
 
 
 function NavBar() {
 
+  const {user, setUser} = useAuth();
   const redirect = useRedirect();
 
   const location = useLocation();
@@ -34,7 +37,17 @@ function NavBar() {
     <SearchButton/>
    { /* <img src="src/images/navbar-profile.png"/> */ }
     
-        {showButton &&<BaseButton children ="Sign In" onClick={()=> redirect("/sign-in")}/>}
+        {showButton && (
+          user
+          ? <NavDropdown title={user.username} className={navBarStyles.navBarText}>
+            <NavDropdown.Item onClick={() => {
+              setUser(null);
+              redirect('/sign-in');
+            }}>
+              Sign Out
+            </NavDropdown.Item>
+          </NavDropdown>
+          : <BaseButton children ="Sign In" onClick={()=> redirect("/sign-in")}/>)}
         </div>
       </Container>
     </Navbar>

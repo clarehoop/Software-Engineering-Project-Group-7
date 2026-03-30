@@ -6,19 +6,22 @@ import'./pages.css'
 import useRedirect from '../hooks/useRedirect';
 import * as UserService from '../services/userService'; // Example service import
 import BaseButton from '../components/Button/button';
+import { useAuth } from '../context/Auth';
 import { useState } from 'react';
 
 
 function SignIn() {
 
+const {setUser} = useAuth();
 const redirect = useRedirect();
 
 // States for credentials & error feedback
 
-const [email, setEmail] = useState('')
+const [email, setEmail] = useState(localStorage.getItem('rememberedEmail') || '');
 const [password, setPassword] = useState('')
 const [error, setError] = useState('')
 const [loading, setLoading] = useState(false);
+const [rememberMe, setRememberMe] = useState(false);
 
 
 const handleSignIn = async () => {
@@ -29,6 +32,9 @@ const handleSignIn = async () => {
 
   if (user) {
     redirect('/')
+    setUser(user)
+    if (rememberMe) localStorage.setItem('rememberedEmail', email);
+    else localStorage.removeItem('rememberedEmail');
   } else {
     setError('Incorrect email or password. Please try again')
   }
@@ -48,7 +54,7 @@ const handleSignIn = async () => {
     <div className="inputFormContainer">
 
     <FormTextComponent
-    placeholder='User Name'
+    placeholder='Email'
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
@@ -74,7 +80,8 @@ const handleSignIn = async () => {
 
     <div className='rememberForgotRow'>
     <div className='rememberMe'>
-    <Checkbox/>
+    <Checkbox
+    onChange={setRememberMe}/>
     <p className='signUpSubHeaderText'>Remember Me</p>
     </div>
     <p className='signUpSubHeaderText'>Forgot Password?</p>

@@ -9,7 +9,9 @@ import Listings from './pages/Listings';
 import PropertyDetail from './pages/PropertyDetail';
 import PostListing from './pages/PostListing';
 import { AuthProvider } from './context/Auth';
+import ProtectedRoute from './components/Protected-Route/Protected-Route';
 import './App.css'; 
+
 
 function App() {
   return(
@@ -17,13 +19,15 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/listings" element={<Listings />} />
         <Route path="/about" element={<About />} />
         <Route path="/help" element={<Help />} />
         <Route path ="/sign-in" element ={<SignIn />}/>
         <Route path="/sign-up" element ={<SignUp />}/>
+        <Route element={<ProtectedRoute />}>
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/post" element={<PostListing />} />
+        <Route path="/listings" element={<Listings />} />
+        </Route>
         </Route>
     </Routes>
     </AuthProvider>

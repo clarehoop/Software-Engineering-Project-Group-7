@@ -7,7 +7,7 @@ const ProtectedRoute = () => {
     if (loading) return <div>Loading...</div>;
 
     // Check if user exists AND if their email is verified
-    if (!user || !user.emailVerified) {
+    if (!user ) {
         return <Navigate to="/sign-in" replace />;
     }
 

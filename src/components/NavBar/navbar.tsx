@@ -13,7 +13,7 @@ import { useAuth } from '../../context/Auth';
 
 function NavBar() {
 
-  const {user, setUser} = useAuth();
+  const {user, logout} = useAuth();
   const redirect = useRedirect();
 
   const location = useLocation();
@@ -39,9 +39,9 @@ function NavBar() {
     
         {showButton && (
           user
-          ? <NavDropdown title={user.username} className={navBarStyles.navBarText}>
-            <NavDropdown.Item onClick={() => {
-              setUser(null);
+          ? <NavDropdown title={user.username || user.email} className={navBarStyles.navBarText}>
+            <NavDropdown.Item onClick={async () => {
+              await logout();
               redirect('/sign-in');
             }}>
               Sign Out

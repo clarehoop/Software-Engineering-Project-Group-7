@@ -11,6 +11,7 @@ import PostListing from './pages/PostListing';
 import { AuthProvider } from './context/Auth';
 import ProtectedRoute from './components/Protected-Route/Protected-Route';
 import './App.css'; 
+import LandlordRoute from './components/Protected-Route/Landlord-Route';
 
 
 function App() {
@@ -25,8 +26,10 @@ function App() {
         <Route path="/sign-up" element ={<SignUp />}/>
         <Route element={<ProtectedRoute />}>
         <Route path="/property/:id" element={<PropertyDetail />} />
-        <Route path="/post" element={<PostListing />} />
+        </Route>
         <Route path="/listings" element={<Listings />} />
+        <Route element={<LandlordRoute />}>
+        <Route path="/post" element={<PostListing />} />
         </Route>
         </Route>
     </Routes>

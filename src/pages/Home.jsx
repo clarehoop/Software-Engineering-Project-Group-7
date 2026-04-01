@@ -33,9 +33,9 @@ function Home(){
       </section>
       <section className = "section">
       <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
-      <PropertyCard/>
-      <PropertyCard/>
-      <PropertyCard/>
+      <PropertyCard onButtonClick={()=>redirect("/sign-in")}/>
+      <PropertyCard onButtonClick={()=>redirect("/sign-in")}/>
+      <PropertyCard onButtonClick={()=>redirect("/sign-in")}/>
       </div>
       </section>  
 

@@ -2,6 +2,7 @@ import styles from './card.module.css';
 import { Card } from "react-bootstrap";
 import BaseButton from "../Button/button";
 import { ReactNode } from "react";  
+import { Navigate, useNavigate } from 'react-router-dom';
 
 interface BaseCardProps {
   title?: ReactNode;
@@ -16,6 +17,7 @@ interface BaseCardProps {
   buttonVariant?: string;
   showButton?: boolean;
   onButtonClick?: () => void;
+  propertyId?: string;
 }
 
 function PropertyCard({ 
@@ -30,10 +32,22 @@ function PropertyCard({
   locationIcon = "src/images/location.png",
   buttonVariant = "primary",
   showButton = true,
-  onButtonClick
+  onButtonClick,
+  propertyId
 }: BaseCardProps) {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (propertyId) {
+      navigate(`/properties/${propertyId}`);
+    } else {
+      onButtonClick?.();
+    }
+  };
+
   return (
-    <Card className = {styles.PropertyCardContainer}>
+    <Card className = {styles.PropertyCardContainer} onClick={handleClick} style ={{cursor: 'pointer'}}>
       <Card.Img variant="top" src={imageSrc} className = {styles.PropertyCardImage} />
       <Card.Body style ={{display: "flex", flexDirection: "column", gap: "0px"}}>
         <div style ={{display: 'flex',padding: '0.625rem'}}>

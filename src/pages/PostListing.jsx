@@ -92,6 +92,10 @@ function PostListing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const base64Images = imageFiles.map((img) => img.base64);
+    console.log('number of images:', base64Images.length);
+console.log('total size KB:', JSON.stringify(base64Images).length / 1024);
+base64Images.forEach((img, i) => console.log(`image ${i} size KB:`, img.length / 1024));
     console.log(user)
     if (!user){
       alert('Must be logged in to post a listing.');

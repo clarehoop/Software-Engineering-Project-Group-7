@@ -55,11 +55,13 @@ html, body {
 }
 
 /* ------------Page Styling CSS------------ */
+
 .pageContent {
   width: 100%;
   max-width: 1800px;
   margin: 0 auto;
   padding: 0 4rem;
+  padding-bottom: 4rem;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -67,6 +69,7 @@ html, body {
 }
 
 /* Mobile/Tablet Breakpoint for Page Styling */
+
 @media (max-width: 1024px) {
   .pageContent {
     padding: 0 2.5rem;
@@ -111,7 +114,7 @@ html, body {
     display: flex;
     flex-direction: row;
     gap: 2.5rem;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .rowSection > * {
@@ -141,6 +144,12 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 0rem;
+}
+
+.inputRow{
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
 }
 
 /* ------------Sign On Page CSS------------ */
@@ -262,7 +271,7 @@ html, body {
 .buttonRow {
   display: flex;
   flex-direction: row;
-  gap: 2.5rem;
+  gap: 1.125rem;
 }
 
 @media (max-width: 768px){
@@ -279,4 +288,94 @@ html, body {
   flex-direction: row;
   gap: 1.125rem;
 
+}
+
+/* ------------Individual Listing Page CSS------------ */
+
+.locationRow{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem;
+  border: 2px solid #000;
+  border-radius: 12px;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background-color: #FBF5F1;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  gap: 1.125rem;
+  padding: 2.5rem;
+}
+
+.imageSelector {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  overflow-x: auto;
+}
+
+.buttonContainer {
+
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 100px;
+  background: #FFF;
+  width: 15%;
+  min-height: 30px;
+  align-self: center;
+
+}
+
+.arrowButton {
+  display: flex;
+  padding: 8px;
+  gap: 10px;
+  border-radius: 69px;
+  border: 1px solid var(--Grey-15, #262262)
+}
+
+.arrowButton--reverse {
+  margin-left: auto;
+  transform: scaleX(-1);
+  background-color:#000;
+  border: 1px solid var(--Black, #000)
+}
+
+.textContainer--center {
+  text-align: center;
+}
+
+.subHeaderText--nonBold {
+  display: inline-flex;
+  flex-direction: column;
+  border-bottom:2px solid var(--Black, #000);
+  padding-bottom: 40px;
+  font-weight: 400;
+}
+
+.subHeaderText--nonBold-noLine {
+  display: inline-flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+  font-weight: 400;
+}
+
+.headerText--inquiryPage {
+  font-size: clamp(1rem, 4vw + 1rem, 2.25rem);
+}
+
+.textContainer--propertyDesc {
+  max-width: 500px;
+  word-wrap: break-word;
 }

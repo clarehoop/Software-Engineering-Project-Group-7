@@ -15,6 +15,7 @@ export interface AppUser {
 
 export interface Listing {
   id: string;
+  landlordId: string;
   address: string;
   city: string;
   country: string;

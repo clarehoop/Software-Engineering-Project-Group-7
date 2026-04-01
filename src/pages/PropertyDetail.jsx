@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
+// I think this page is depreciated? See: PostListing.jsx / PropertyPage.jsx - Collins
+
+
 function PropertyDetail() {
   const { id } = useParams(); // Gets the ID from the URL (/property/ABC123)
   const [property, setProperty] = useState(null);

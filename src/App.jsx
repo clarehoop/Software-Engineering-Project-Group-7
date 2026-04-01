@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './layout';
 import Home from './pages/Home';
-import About from './pages/About';
+import PropertyPage from './pages/PropertyPage';
 import Help from './pages/Help';
 import SignIn from './pages/Sign-In';
 import SignUp from './pages/Sign-Up';
@@ -20,12 +20,13 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/listings" element={<Listings />} />
+        <Route path="/properties/:propertyId" element={<PropertyPage />} />
         <Route path="/help" element={<Help />} />
         <Route path ="/sign-in" element ={<SignIn />}/>
         <Route path="/sign-up" element ={<SignUp />}/>
         <Route element={<ProtectedRoute />}>
-        <Route path="/property/:id" element={<PropertyDetail />} />
+        {/*<Route path="/property/:id" element={<PropertyDetail />} />*/}
         </Route>
         <Route path="/listings" element={<Listings />} />
         <Route element={<LandlordRoute />}>

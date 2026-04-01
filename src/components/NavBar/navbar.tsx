@@ -9,6 +9,7 @@ import SearchButton from '../Search-Button/search-button';
 import useRedirect from '../../hooks/useRedirect';
 import { NavDropdown } from 'react-bootstrap';
 import { useAuth } from '../../context/Auth';
+// Image import
 
 
 function NavBar() {
@@ -29,13 +30,11 @@ function NavBar() {
           <Nav className={"mx-auto " + navBarStyles.navBarText}>
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/listings">Listings</Nav.Link>
-            <Nav.Link as={NavLink} to="/about">About</Nav.Link>
             <Nav.Link as={NavLink} to="/help">Help</Nav.Link> 
           </Nav>
         </Navbar.Collapse>
         <div className = {navBarStyles.navBarSection}>
     <SearchButton/>
-   { /* <img src="src/images/navbar-profile.png"/> */ }
     
         {showButton && (
           user

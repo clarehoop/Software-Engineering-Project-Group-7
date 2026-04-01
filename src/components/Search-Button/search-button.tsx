@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+// Image imports
+import searchIcon from '../../images/navbar-search.png'
 
 function SearchButton(){
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +21,7 @@ function SearchButton(){
     return (
     <div ref={containerRef} style={{ display: 'flex', alignItems: 'center' }}>
       <img
-        src="src/images/navbar-search.png"
+        src={searchIcon}
         alt="Search"
         onClick={() => setIsOpen(prev => !prev)}
         style={{ cursor: 'pointer' }}

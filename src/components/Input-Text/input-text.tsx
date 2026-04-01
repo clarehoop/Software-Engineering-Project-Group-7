@@ -22,6 +22,8 @@ interface FormTextComponentProps {
   type?: string;
   label?: string;
   fontWeight?: string;
+  multiline?: boolean;
+  rows?: number;
 }
 
 function FormTextComponent({
@@ -39,6 +41,8 @@ function FormTextComponent({
   type,
   label,
   value,
+  multiline = false,
+  rows = 4,
   onChange,
   onValueChange
 }: FormTextComponentProps) {
@@ -49,18 +53,19 @@ function FormTextComponent({
 
   const resolvedType = type === 'date' && !isFocused && !value ? 'text' : type;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  onChange?.(e);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+  onChange?.(e as React.ChangeEvent<HTMLInputElement>);
   onValueChange?.(e.target.value); 
 };
 
   return (
     <div style={{ position: 'relative', display: 'inline-flex', width, height, overflow: 'visible' }}>
       <Form.Control
+        as={multiline ? 'textarea' : 'input'}
         name={name}
         placeholder={placeholder}
         className={`bootstrap-scope ${styles.container}`}
-        type={resolvedType}
+        type={multiline ? undefined: resolvedType}
         value={value ?? ''}
         onChange={handleChange}
         onFocus={()=>{
@@ -79,6 +84,7 @@ function FormTextComponent({
           border,
           borderRadius,
           minHeight,
+          resize: multiline ? 'vertical': undefined,
         } as React.CSSProperties}
       />
 

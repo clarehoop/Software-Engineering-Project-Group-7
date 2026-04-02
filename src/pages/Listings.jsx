@@ -12,22 +12,29 @@ function Listings() {
   const navigate = useNavigate();
 
   const locationQuery = searchParams.get('location');
+  const typeQuery = searchParams.get('type');
+  const priceQuery = searchParams.get('maxPrice');
+
 
   useEffect(() => {
     const fetchSublets = async () => {
       setLoading(true);
       try {
         const listingsRef = collection(db, "listings");
-        let q;
+        let constraints = [];
   
         if (locationQuery) {
           //Search mode: Filter by location
           // Note: Make sure your DB casing matches (e.g., "Clifton" vs "clifton")
-          q = query(listingsRef, where("location", "==", locationQuery));
-        } else {
-          //Default mode: Show all listings
-          q = query(listingsRef); 
+          constraints.push(where("location", "==", locationQuery));
+        } 
+        if (typeQuery && typeQuery !== "Type"){
+          constraints.push(where("type", "==", typeQuery));
         }
+        if (priceQuery){
+          constraints.push(where("price", "<=", Number(priceQuery)));
+        }
+        const q = query(listingsRef, ...constraints);
   
         const querySnapshot = await getDocs(q);
         const results = querySnapshot.docs.map(doc => ({ 
@@ -44,7 +51,7 @@ function Listings() {
     };
   
     fetchSublets();
-  }, [locationQuery]); // Still triggers if the user searches while on the page
+  }, [locationQuery, typeQuery, priceQuery]); // Still triggers if the user searches while on the page
 
   // Handle clicking into a specific sublet 
   const handleCardClick = (id) => {

@@ -4,13 +4,21 @@ import styles from './dropdown.module.css';
 
 interface DropdownComponentProps {
   icon?: string;
+  onSelect?: (value: string) => void;
 }
 
 
 function DropdownComponent({
-    icon
+    icon,
+    onSelect
 }: DropdownComponentProps){
     const [selected, setSelected] = useState('Type');
+    const handleSelect = (value: string) => {
+      setSelected(value);
+      if (onSelect){
+        onSelect(value);
+      }
+    };
   return (
     <div style={{position: 'relative', display: 'inline-block', width: '100%'}}>
     <div className="bootstrap-scope">

@@ -7,11 +7,13 @@ interface PriceRangeComponentProps {
   placeholder?: string;
   image?: ReactNode;
   icon?: string;
+  onValueChange?: (value: string) => void;
 }
 function PriceRangeComponent({
-    placeholder = "Price Range",
+    placeholder = "Price",
     image,
-    icon
+    icon,
+    onValueChange
 }: PriceRangeComponentProps){
   const [value, setValue] = useState('');
 
@@ -19,6 +21,9 @@ function PriceRangeComponent({
     const digits = e.target.value.replace(/[^0-9]/g, '');
     const formatted = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         setValue(digits ? `$${formatted}` : '');
+    if (onValueChange){
+      onValueChange(digits);
+    }
    };
 
   return (

@@ -73,11 +73,11 @@ function Listings() {
               <div key={sublet.id} onClick={() => handleCardClick(sublet.id)} style={{cursor: 'pointer'}}>
                 <PropertyCard 
                   title={sublet.title}
-                  price={sublet.price}
+                  price={`$${sublet.price}`}
                   address={sublet.address}
-                  image={sublet.imageUrl}
-                  beds={sublet.beds}
-                  baths={sublet.baths}
+                  imageSrc={sublet.images && sublet.images.length > 0 ? sublet.images[0] : "src/images/example.png"}
+                  beds={`${sublet.beds} Bed(s)`}
+                  baths={`${sublet.baths} Bath(s)`}
                   showButton={false} 
                 />
               </div>

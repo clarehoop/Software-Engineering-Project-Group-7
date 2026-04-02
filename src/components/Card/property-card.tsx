@@ -7,11 +7,14 @@ import { Navigate, useNavigate } from 'react-router-dom';
 interface BaseCardProps {
   title?: ReactNode;
   rooms?: ReactNode;
+  beds?: ReactNode;
+  baths?: ReactNode;
   sqFeet?: ReactNode;
   imageSrc?: string;
   price?: ReactNode;
   locationIcon?: string;
   sqftIcon?: string;
+  bathIcon?: string;
   roomsIcon?: string;
   buttonText?: ReactNode;
   buttonVariant?: string;
@@ -22,13 +25,15 @@ interface BaseCardProps {
 
 function PropertyCard({ 
   title = "2222 Euclid Avenue", 
-  rooms = "4 Rooms",
+  beds = "2 Baths",
+  baths = "3 baths",
   sqFeet = "3,500 sq ft",
   imageSrc = "src/images/example.png",
   buttonText = "Sign Up",
   price = "$2,500,000",
   sqftIcon = "src/images/size.png",
   roomsIcon = "src/images/rooms.png",
+  bathIcon = "src/images/bath-icon.jpg",
   locationIcon = "src/images/location.png",
   buttonVariant = "primary",
   showButton = true,
@@ -56,14 +61,17 @@ function PropertyCard({
         <Card.Title className = {styles.PropertyCardTitle}>{title}</Card.Title>
         </div>
         </div>
-        <div style ={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '0.625rem', paddingLeft: '0.625rem'}}>
-        <div style ={{display: 'flex', gap: '0.625rem', alignItems: 'center'}}>
-        <img src={roomsIcon} className={styles.metaIcon}/>
-        <Card.Text className = {styles.PropertyCardText}>{rooms}</Card.Text>
+        <div style ={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '0.8rem', paddingLeft: '0.8rem'}}>
+        <div style ={{display: 'flex', gap: '0.4rem', alignItems: 'center'}}>
+        <Card.Text className = {styles.PropertyCardText}>{price}</Card.Text>
         </div>
-        <div style ={{display: 'flex', gap: '0.625rem', alignItems: 'center', paddingRight: '0.625rem'}}>
-        <img src={sqftIcon} className={styles.metaIcon}/>
-        <Card.Text className = {styles.PropertyCardText}>{sqFeet}</Card.Text>
+        <div style ={{display: 'flex', gap: '0.4rem', alignItems: 'center'}}>
+        <img src={roomsIcon} className={styles.metaIcon}/>
+        <Card.Text className = {styles.PropertyCardText}>{beds}</Card.Text>
+        </div>
+        <div style ={{display: 'flex', gap: '0.4rem', alignItems: 'center', paddingRight: '0.625rem'}}>
+        <img src={bathIcon} className={styles.metaIcon}/>
+        <Card.Text className = {styles.PropertyCardText}>{baths}</Card.Text>
         </div>
         </div>
         <div style ={{display: 'flex', alignItems: 'center', paddingLeft: '0.625rem', paddingRight: '0.625rem', justifyContent: 'space-between'}}>
@@ -72,9 +80,7 @@ function PropertyCard({
           {buttonText}
         </BaseButton>
           )}
-        <div style ={{marginLeft: 'auto'}}>
-        <Card.Text className = {styles.PropertyCardText}>{price}</Card.Text>
-        </div>
+        
         </div>
       </Card.Body>
     </Card>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collectionGroup, query, where, getDocs } from 'firebase/firestore';
 import PropertyCard from '../components/Card/property-card';
 import './pages.css';
 
@@ -18,13 +18,15 @@ function Listings() {
 
   useEffect(() => {
     const fetchSublets = async () => {
+
       setLoading(true);
       try {
-        const listingsRef = collection(db, "listings");
+        const baseRef = collectionGroup(db, 'listing');
+
         let constraints = [];
   
         if (locationQuery) {
-          //Search mode: Filter by location
+          //Search mode: Filter by location, price, and type
           // Note: Make sure your DB casing matches (e.g., "Clifton" vs "clifton")
           constraints.push(where("location", "==", locationQuery));
         } 
@@ -34,13 +36,13 @@ function Listings() {
         if (priceQuery){
           constraints.push(where("price", "<=", Number(priceQuery)));
         }
-        const q = query(listingsRef, ...constraints);
+        const q = query(baseRef, ...constraints);
   
         const querySnapshot = await getDocs(q);
         const results = querySnapshot.docs.map(doc => ({ 
           id: doc.id, 
           ...doc.data() 
-        }));
+        })); 
         
         setSublets(results);
       } catch (error) {
@@ -61,7 +63,7 @@ function Listings() {
   return (
     <div className="pageContent listingsPage">
       <div className="resultsContainer">
-        <h2>{sublets.length} Sublets in {locationQuery}</h2>
+        <h2>{sublets.length} {locationQuery} Sublets </h2>
         
         {loading ? (
           <div className="loader">Searching Database...</div>

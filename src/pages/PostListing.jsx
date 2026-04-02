@@ -108,7 +108,7 @@ base64Images.forEach((img, i) => console.log(`image ${i} size KB:`, img.length /
     setIsSubmitting(true);
 
     try {
-      const listingsRef = collection(db, "users", user.id, "listing");
+      const listingsRef = collection(db, "users", user.uid, "listing");
       const docRef = await addDoc(listingsRef, {
         ...formData,
         price: Number(formData.price),

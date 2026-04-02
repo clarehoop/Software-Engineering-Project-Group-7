@@ -48,7 +48,7 @@ function Listings() {
 
   // Handle clicking into a specific sublet 
   const handleCardClick = (id) => {
-    navigate(`/property/${id}`);
+    navigate(`/properties/${id}`);
   };
 
   return (

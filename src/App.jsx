@@ -9,6 +9,7 @@ import Listings from './pages/Listings';
 import PropertyDetail from './pages/PropertyDetail';
 import PostListing from './pages/PostListing';
 import { AuthProvider } from './context/Auth';
+import Inquiries from './pages/Inquiries';
 import ProtectedRoute from './components/Protected-Route/Protected-Route';
 import './App.css'; 
 import LandlordRoute from './components/Protected-Route/Landlord-Route';
@@ -22,7 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/listings" element={<Listings />} />
         <Route path="/properties/:propertyId" element={<PropertyPage />} />
-        <Route path="/help" element={<Help />} />
+        <Route path="/inquiries" element={<Inquiries />} />
         <Route path ="/sign-in" element ={<SignIn />}/>
         <Route path="/sign-up" element ={<SignUp />}/>
         <Route element={<ProtectedRoute />}>

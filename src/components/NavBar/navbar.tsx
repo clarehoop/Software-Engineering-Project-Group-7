@@ -30,7 +30,9 @@ function NavBar() {
           <Nav className={"mx-auto " + navBarStyles.navBarText}>
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/listings">Listings</Nav.Link>
-            <Nav.Link as={NavLink} to="/help">Help</Nav.Link> 
+            {user?.is_landlord && (
+            <Nav.Link as={NavLink} to="/inquiries">Landlord Inquiries</Nav.Link> 
+            )}
           </Nav>
         </Navbar.Collapse>
         <div className = {navBarStyles.navBarSection}>

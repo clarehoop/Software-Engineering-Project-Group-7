@@ -20,7 +20,7 @@ export const getListings = async (): Promise<Listing[]> => {
 }*/}
 
 export const getListingById = async (id: string): Promise<Listing | null> => {
-  const snapshot = await getDocs(collectionGroup(db, 'listings'));
+  const snapshot = await getDocs(collectionGroup(db, 'listing'));
   const match = snapshot.docs.find(d => d.id === id);
   if (!match) return null;
 

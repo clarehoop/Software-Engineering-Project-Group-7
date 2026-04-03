@@ -24,6 +24,7 @@ interface FormTextComponentProps {
   fontWeight?: string;
   multiline?: boolean;
   rows?: number;
+  readOnly?: boolean;
 }
 
 function FormTextComponent({

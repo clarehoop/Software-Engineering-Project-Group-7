@@ -45,7 +45,6 @@ html, body {
 
 .signUpPage .subHeaderText {
     font-weight: 400;
-    opacity: 60%;
 }
 
 .signUpSubHeaderText {
@@ -171,7 +170,6 @@ html, body {
 .rememberForgotRow {
   display: flex;
   justify-content: space-between;
-  opacity: 60%;
   gap: 0.75rem;
   width: 100%;
 }
@@ -378,4 +376,16 @@ html, body {
 .textContainer--propertyDesc {
   max-width: 500px;
   word-wrap: break-word;
+}
+
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.listingsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }

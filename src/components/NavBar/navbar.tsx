@@ -36,7 +36,7 @@ function NavBar() {
           </Nav>
         </Navbar.Collapse>
         <div className = {navBarStyles.navBarSection}>
-    <SearchButton/>
+    {/*<SearchButton/>*/}
     
         {showButton && (
           user

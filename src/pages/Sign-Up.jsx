@@ -28,7 +28,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+    color= 'rgba(0, 0, 0, 1)'/>
 
     <FormTextComponent
     value={form.password}
@@ -38,7 +38,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+     color= 'rgba(0, 0, 0, 1)'/>
 
     <FormTextComponent
     value={form.confirmPassword}
@@ -48,7 +48,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+     color= 'rgba(0, 0, 0, 1)'/>
 
     <FormTextComponent
     placeholder='First Name'
@@ -57,7 +57,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+     color= 'rgba(0, 0, 0, 1)'/>
 
     <FormTextComponent
     placeholder='Last Name'
@@ -66,7 +66,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+    color= 'rgba(0, 0, 0, 1)'/>
 
     <FormTextComponent
     label="Date of Birth"
@@ -77,7 +77,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+    color= 'rgba(0, 0, 0, 1)'/>
 
     <FormTextComponent
     placeholder='Email'
@@ -86,7 +86,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+    color= 'rgba(0, 0, 0, 1)'/>
 
     <FormTextComponent
     placeholder='Phone Number'
@@ -95,7 +95,7 @@ function SignUp() {
     border = "1px solid #000000"
     borderRadius='0px'
     minHeight="5rem"
-    color= 'rgba(0, 0, 0, 0.6)'/>
+    color= 'rgba(0, 0, 0, 1)'/>
 
     <div className='userTypeRow'>
     <div className='rememberMe'>

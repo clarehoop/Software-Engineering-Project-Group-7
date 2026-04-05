@@ -63,10 +63,12 @@ function Listings() {
   return (
     <div className="pageContent listingsPage">
       <div className="resultsContainer">
-        <h2>{sublets.length} {locationQuery} Sublets </h2>
+        <h2>{sublets.length} {locationQuery ? `${locationQuery} ` : ""}Sublets</h2>
         
         {loading ? (
           <div className="loader">Searching Database...</div>
+        ) : sublets.length === 0 ? (
+          <p>No sublets found. Try adjusting your filters.</p>
         ) : (
           <div className="listingsGrid">
             {sublets.map((sublet) => (

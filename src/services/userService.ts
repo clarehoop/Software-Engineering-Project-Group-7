@@ -41,7 +41,7 @@ export const getUserById = async (userId: string): Promise<AppUser | null> => {
 }
 
 export const getListings = async (userId: string): Promise<Listing[]> => {
-  const snapshot = await getDocs(collection(db, 'users', userId, 'listings'));
+  const snapshot = await getDocs(collection(db, 'users', userId, 'listing'));
   return snapshot.docs.map(doc => ({...doc.data()}) as Listing);
 }
 
@@ -55,8 +55,7 @@ export const createUser = async (
   email: string,
   phone_num: string,
   is_landlord: Boolean,
-  is_admin: Boolean,
-  date_created: Date): Promise<AppUser> => {
+  is_admin: Boolean): Promise<AppUser> => {
   const user = {
     username: username,
     password: password,
@@ -67,8 +66,7 @@ export const createUser = async (
     phone_num: phone_num,
     is_landlord: is_landlord,
     is_admin: is_admin,
-    date_created: date_created,
-    listings: []
+    date_created: new Date(),
   } as Omit<AppUser, 'id'>;
 
   const credential = await createUserWithEmailAndPassword(auth, email, password);
@@ -81,11 +79,12 @@ export const createUser = async (
 // Deletes a user and all its listings
 export const removeUserById = async (userId: string): Promise<void> => {
   const user = await getUserById(userId);
-  
-  if (user.listings?.length) {
-    await Promise.all(user.listings.map(listing => {
-      deleteDoc(doc(db, 'users', userId, 'listings', listing.id))
-    }))
+
+  const snapshot = await getDocs(collection(db, 'users', userId, 'listing'));
+  if (snapshot.docs.length) {
+    snapshot.docs.forEach((listing) => {
+      deleteDoc(doc(db, 'users', userId, 'listing', listing.id));
+    });
   }
 
   const userSnapshot = await deleteDoc(doc(db, 'users', userId));

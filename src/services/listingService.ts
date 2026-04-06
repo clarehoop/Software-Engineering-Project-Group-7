@@ -1,10 +1,10 @@
 import { db } from '../firebase'
-import { getDocs, collection, collectionGroup, addDoc, query, where, deleteDoc } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, doc, deleteDoc, addDoc, query, where, getDoc } from 'firebase/firestore'
 import { Listing } from 'types/user'
 
 // Returns all listings
 export const getListings = async (): Promise<Listing[]> => {
-  const snapshot = await getDocs(collectionGroup(db, 'listings'));
+  const snapshot = await getDocs(collectionGroup(db, 'listing'));
   return snapshot.docs.map(doc => ({
     id: doc.id,
     ...doc.data()
@@ -37,22 +37,20 @@ export const getListingById = async (id: string): Promise<Listing | null> => {
 // Creates listings and returns said listing
 export const createListing = async (
   userId: string,
-  landlordId: string,
   address: string,
-  city: string,
-  country: string,
-  state: string,
-  status: string,
-  type: string,
-  apt_num: string,
+  city: string | null,
+  country: string | null,
+  state: string | null,
+  status: string | null,
+  type: string | null,
+  apt_num: string | null,
   description: string,
-  lease_terms: string,
-  roomates: Number,
+  lease_terms: string | null,
+  roomates: Number | null,
   beds: Number,
   baths: Number,
+  title: string,
   price: Number): Promise<Listing> => {
-  const geoCoord = new GeoPoint(0, 0); // TODO Implement logic here or in page??
-  
   const listing = {
     landlordId: userId,
     address: address,
@@ -68,7 +66,9 @@ export const createListing = async (
     beds: beds,
     baths: baths,
     price: price,
-    coordinates: null, //new GeolocationCoordinates() // TODO Implement logic here or in page?? //Collins: throwing null until implemented
+    title: title,
+    createdAt: new Date(),
+    // coordinates: null, //new GeolocationCoordinates() // TODO Implement logic here or in page?? //Collins: throwing null until implemented
   } as Omit<Listing, 'id'>;
 
   const listRef = await addDoc(collection(db, 'users', userId, 'listings'), listing);
@@ -106,12 +106,11 @@ export const getInquiriesByLandlord = async (landlordId: string) => {
 };
 
 export const deleteListing = async (listingId: string): Promise<void> => {
-  const snapshot = await getDocs(collectionGroup(db, 'listing'));
-  const match = snapshot.docs.find(d => d.id === listingId);
- 
-  if (!match) {
-    throw new Error(`Listing with id "${listingId}" not found.`);
-  }
- 
-  await deleteDoc(match.ref);
-};
+  const snapshot = await getDocs(
+    query(collectionGroup(db, 'listing'), where('id', '==', listingId))
+  );
+
+  if (snapshot.empty) throw new Error('Application not found.');
+
+  await deleteDoc(snapshot.docs[0].ref);
+}

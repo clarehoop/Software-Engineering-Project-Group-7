@@ -4,10 +4,23 @@ import Navbar from 'react-bootstrap/Navbar';
 import '../../styles/bootstrap-scoped.css';
 import navBarStyles from './navbar.module.css'
 import BaseButton from '../Button/button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import SearchButton from '../Search-Button/search-button';
+import useRedirect from '../../hooks/useRedirect';
+import { NavDropdown } from 'react-bootstrap';
+import { useAuth } from '../../context/Auth';
+// Image import
+
 
 function NavBar() {
+
+  const {user, logout} = useAuth();
+  const redirect = useRedirect();
+
+  const location = useLocation();
+  const hideButtonOn = ['/sign-in', '/sign-up']
+  const showButton = !hideButtonOn.includes(location.pathname);
+
   return (
     <div className = "bootstrap-scope">
     <Navbar expand="lg" className={navBarStyles.navBar}>
@@ -17,16 +30,25 @@ function NavBar() {
           <Nav className={"mx-auto " + navBarStyles.navBarText}>
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/listings">Listings</Nav.Link>
-            <Nav.Link as={NavLink} to="/about">About</Nav.Link>
-            <Nav.Link as={NavLink} to="/help">Help</Nav.Link> 
+            {user?.is_landlord && (
+            <Nav.Link as={NavLink} to="/inquiries">Landlord Inquiries</Nav.Link> 
+            )}
           </Nav>
         </Navbar.Collapse>
         <div className = {navBarStyles.navBarSection}>
-    <SearchButton/>
-   { /* <img src="src/images/navbar-profile.png"/> */ }
+    {/*<SearchButton/>*/}
     
-        <BaseButton 
-        children ="Sign In"/>
+        {showButton && (
+          user
+          ? <NavDropdown title={user.username || user.email} className={navBarStyles.navBarText}>
+            <NavDropdown.Item onClick={async () => {
+              await logout();
+              redirect('/sign-in');
+            }}>
+              Sign Out
+            </NavDropdown.Item>
+          </NavDropdown>
+          : <BaseButton children ="Sign In" onClick={()=> redirect("/sign-in")}/>)}
         </div>
       </Container>
     </Navbar>

@@ -5,12 +5,12 @@ import styles from '../components/Card/card.module.css';
 import HomePageSearchBar from '../components/Home-Page-Search-Bar/search-bar';
 import ReviewCard from '../components/Card/review-card';
 import FormTextComponent from '../components/Input-Text/input-text';
-import SignUpRedirect from '../hooks/sign-up-redirect';
+import useRedirect from '../hooks/useRedirect';
 import'./pages.css'
 
 function Home(){
 
-    const handleSignUpClick = SignUpRedirect();
+    const redirect = useRedirect();
 
     return( 
       <div className = "pageContent" id="home">
@@ -18,19 +18,24 @@ function Home(){
       <div className = "textContainer">
       <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
       <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
+      <div className='buttonRow'>
       <BaseButton
       children = "Sign Up"
-      onClick={handleSignUpClick}/>
+      onClick={()=> redirect("/sign-in")}/>     
+      <BaseButton
+      children = "Create a Listing"
+      onClick={()=> redirect("/post")}/>
       </div>
-      <div style ={{marginTop: '2.5rem'}}>
+      </div>
+      <div style ={{marginTop: '1.125rem'}}>
       <HomePageSearchBar/>
       </div>
       </section>
       <section className = "section">
       <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
-      <PropertyCard/>
-      <PropertyCard/>
-      <PropertyCard/>
+      <PropertyCard propertyId ="rTXZV4U4CFXpoMPFeOC6" onButtonClick={()=>redirect("/sign-in")}/> {/* used for testing currently */}
+      <PropertyCard onButtonClick={()=>redirect("/sign-in")}/>
+      <PropertyCard onButtonClick={()=>redirect("/sign-in")}/>
       </div>
       </section>  
 

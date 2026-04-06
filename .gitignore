@@ -30,3 +30,6 @@ git add src/styles/bootstrap-scoped.css
 *.env
 *.env.*
 !.env.example
+
+# Firebase Config 
+src/services/firebaseConfig.js

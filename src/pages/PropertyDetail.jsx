@@ -1,6 +1,10 @@
+import {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+
+// I think this page is depreciated? See: PostListing.jsx / PropertyPage.jsx - Collins
+
 
 function PropertyDetail() {
   const { id } = useParams(); // Gets the ID from the URL (/property/ABC123)
@@ -23,8 +27,11 @@ function PropertyDetail() {
     <div>
       <h1>{property.title}</h1>
       <img src={property.imageUrl} alt={property.title} />
-      <p>{property.description}</p>
-      {/* ... rest of your UI */}
+      <p><strong>Description: </strong>{property.description}</p>
+      <p><strong>Address: </strong>{property.address}</p>
+      <p><strong>Price: </strong>{property.price}</p>
+      <p><strong>Baths: </strong>{property.baths}</p>
+      <p><strong>Beds: </strong>{property.beds}</p>
     </div>
   );
 }

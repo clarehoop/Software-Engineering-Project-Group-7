@@ -8,9 +8,10 @@ interface BaseButtonProps {
   children?: ReactNode;
   variant?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-function BaseButton({ children = 'Click to load', onClick }: BaseButtonProps) {
+function BaseButton({ children = 'Click to load', onClick, type = 'button' }: BaseButtonProps) {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -28,12 +29,14 @@ function BaseButton({ children = 'Click to load', onClick }: BaseButtonProps) {
   }, [isLoading]);
 
   const handleClick = () => {
+    if (type === 'submit') return;
     setLoading(true);
     onClick?.();
   };
 
   return (
     <Button
+      type={type}
       className = {styles.button}
       disabled={isLoading}
       onClick={!isLoading ? handleClick : undefined}

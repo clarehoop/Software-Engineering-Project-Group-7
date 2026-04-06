@@ -1,5 +1,5 @@
 import { db } from '../firebase'
-import { getDocs, collection, collectionGroup, doc, getDoc, setDoc, addDoc, GeoPoint } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, addDoc, query, where, deleteDoc } from 'firebase/firestore'
 import { Listing } from 'types/user'
 
 // Returns all listings
@@ -11,17 +11,33 @@ export const getListings = async (): Promise<Listing[]> => {
   }) as Listing);
 };
 
-// Returns listing with corresponding id
-export const getListingById = async (id: string): Promise<Listing | null> => {
+// Returns listing with corresponding id - legacy function
+{/*export const getListingById = async (id: string): Promise<Listing | null> => {
   const snapshot = await getDoc(doc(db, 'listings', id));
     if (!snapshot.exists()) return null;
   
     return {id: id, ...snapshot.data()} as Listing;
-}
+}*/}
+
+export const getListingById = async (id: string): Promise<Listing | null> => {
+  const snapshot = await getDocs(collectionGroup(db, 'listing'));
+  const match = snapshot.docs.find(d => d.id === id);
+  if (!match) return null;
+
+  const derivedLandlordId = match.ref.parent.parent?.id;
+
+
+  return {
+    ...match.data(),
+    id: match.id,
+    landlordId: derivedLandlordId,
+  } as Listing;
+};
 
 // Creates listings and returns said listing
 export const createListing = async (
   userId: string,
+  landlordId: string,
   address: string,
   city: string,
   country: string,
@@ -38,6 +54,7 @@ export const createListing = async (
   const geoCoord = new GeoPoint(0, 0); // TODO Implement logic here or in page??
   
   const listing = {
+    landlordId: userId,
     address: address,
     city: city,
     country: country,
@@ -51,10 +68,10 @@ export const createListing = async (
     beds: beds,
     baths: baths,
     price: price,
-    coordinates: geoCoord
+    coordinates: null, //new GeolocationCoordinates() // TODO Implement logic here or in page?? //Collins: throwing null until implemented
   } as Omit<Listing, 'id'>;
 
-  const listRef = await addDoc(collection(db, 'users', userId, 'listing'), listing);
+  const listRef = await addDoc(collection(db, 'users', userId, 'listings'), listing);
 
   return getListingById(listRef.id);
 };
@@ -73,4 +90,28 @@ export const getFeaturedListings = async (): Promise<Listing[]> => {
   const rand2 = Math.floor(Math.random() * listings.length);
   const rand3 = Math.floor(Math.random() * listings.length);
   return [ listings[rand1], listings[rand2], listings[rand3] ];
+};
+
+// Returns stored inquiries by landlord
+
+// Still needs to be tested - Collins
+
+export const getInquiriesByLandlord = async (landlordId: string) => {
+  const q = query(
+    collection(db, 'inquiries'),
+    where('landlordId', '==', landlordId)
+  );
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+};
+
+export const deleteListing = async (listingId: string): Promise<void> => {
+  const snapshot = await getDocs(collectionGroup(db, 'listing'));
+  const match = snapshot.docs.find(d => d.id === listingId);
+ 
+  if (!match) {
+    throw new Error(`Listing with id "${listingId}" not found.`);
+  }
+ 
+  await deleteDoc(match.ref);
 };

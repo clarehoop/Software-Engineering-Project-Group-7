@@ -5,18 +5,43 @@ import styles from '../components/Card/card.module.css';
 import HomePageSearchBar from '../components/Home-Page-Search-Bar/search-bar';
 import ReviewCard from '../components/Card/review-card';
 import FormTextComponent from '../components/Input-Text/input-text';
+import MapView from '../components/Map';
 import useRedirect from '../hooks/useRedirect';
 import'./pages.css'
 import { useAuth } from '../context/Auth';
+import { useEffect, useState } from 'react';
+import { collectionGroup, getDocs, query, limit } from 'firebase/firestore';
+import {db} from '../firebase';
 
 function Home(){
+    const [mapListings, setMapListings] = useState([])
     const redirect = useRedirect();
     const { user } = useAuth();
+    
+    useEffect(() => {
+      const fetchTopListings = async () => {
+        try{
+        const baseRef = collectionGroup(db, 'listing');
+        const q = query(baseRef, limit(5));
+        const snap = await getDocs(q);
+
+        const listingData = snap.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setMapListings(listingData);
+
+      }catch(error){
+        console.error("Error fetching listings", error);
+      }
+      };
+      fetchTopListings();
+    }, []);
 
     return( 
       <div className = "pageContent" id="home">
-      <section className = "section">
-        <div className = "textContainer">
+      <section className = "section" style={{ display: 'flex', alignItems: 'flex-start', gap: '2rem' }}>
+        <div className = "textContainer" style={{flex: 1}}>
         <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
         <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
           <div className='buttonRow'>
@@ -27,10 +52,22 @@ function Home(){
             children = "Create a Listing"
             onClick={()=> redirect("/post")}/>}
           </div>
-        </div>
+        
         <div style ={{marginTop: '1.125rem'}}>
         <HomePageSearchBar/>
         </div>
+        </div>
+      <div style={{
+        flex: 1, 
+        height: '400px',
+        width: '100%', 
+        borderRadius: '24px', 
+        overflow: 'hidden', 
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        marginTop: '2rem'
+      }}>
+      <MapView listings={mapListings} />
+          </div>
       </section>
       <section className = "section">
         <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>

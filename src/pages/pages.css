@@ -389,3 +389,51 @@ html, body {
   flex-direction: column;
   gap: 2.5rem;
 }
+/* Container for the two columns */
+.splitView {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Left side takes up roughly 60% of the space */
+.resultsColumn {
+  flex: 3;
+  padding: 10px;
+}
+
+/* Right side takes up 40% and stays stuck to the top */
+.mapStickyContainer {
+  flex: 2;
+  position: sticky;
+  top: 80px; /* Adjust based on your header height */
+  height: calc(100vh - 100px); /* Makes the map fill the screen height */
+  background: #eee;
+  border-radius: 12px;
+  overflow: hidden; /* Keeps the map corners rounded */
+}
+
+/* Ensure the MapView component inside fills the container */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Mobile Responsive: Stack them on top of each other on small screens */
+@media (max-width: 768px) {
+  .splitView {
+    flex-direction: column;
+  }
+  .mapStickyContainer {
+    flex: 2;
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 100px);
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-left: 20px;
+    order: -1; /* Puts map on top for mobile */
+  }
+}

@@ -24,6 +24,7 @@ interface BaseCardProps {
   onButtonClick?: () => void;
   propertyId?: string;
   onDeleted?: (id: string) => void;
+  allowDelete?: boolean;
 }
 
 function PropertyCard({ 
@@ -42,7 +43,8 @@ function PropertyCard({
   showButton = true,
   onButtonClick,
   propertyId,
-  onDeleted
+  onDeleted,
+  allowDelete= true
 }: BaseCardProps) {
 
   const navigate = useNavigate();
@@ -174,7 +176,7 @@ function PropertyCard({
 
 
       {/* Delete Button */}
-      {isAdmin && propertyId && (
+      {isAdmin && propertyId && allowDelete && (
           <button
             onClick={handleDeleteClick}
             title="Delete listing"

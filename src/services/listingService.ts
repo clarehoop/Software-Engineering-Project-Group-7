@@ -92,6 +92,17 @@ export const getFeaturedListings = async (): Promise<Listing[]> => {
   return [ listings[rand1], listings[rand2], listings[rand3] ];
 };
 
+export const getRandomListings = async () => {
+  const q = collectionGroup(db, 'listing');
+  const snapshot = await getDocs(q);
+  const all = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+
+  const shuffled = all.sort(() => Math.random()- 0.5);
+  return shuffled.slice(0,3);
+}
+
+
+
 // Returns stored inquiries by landlord
 
 // Still needs to be tested - Collins

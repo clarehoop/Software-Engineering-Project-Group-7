@@ -12,11 +12,27 @@ import { useAuth } from '../context/Auth';
 import { useEffect, useState } from 'react';
 import { collectionGroup, getDocs, query, limit } from 'firebase/firestore';
 import {db} from '../firebase';
+import { getRandomListings } from '../services/listingService';
 
 function Home(){
     const [mapListings, setMapListings] = useState([])
     const redirect = useRedirect();
     const { user } = useAuth();
+    const [randomListings, setRandomListings] = useState([]);
+
+    // To populate the home page property cards
+
+    useEffect(() => {
+      const loadRandom = async () => {
+        try {
+          const listings = await getRandomListings();
+          setRandomListings(listings);
+        } catch (error) {
+          console.error("Error fetching random listings:", error);
+        }
+      };
+      loadRandom();
+    }, []);
     
     useEffect(() => {
       const fetchTopListings = async () => {
@@ -69,13 +85,25 @@ function Home(){
       <MapView listings={mapListings} />
           </div>
       </section>
-      <section className = "section">
-        <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
-          <PropertyCard showButton={user == null} propertyId ="rTXZV4U4CFXpoMPFeOC6" onButtonClick={()=>redirect("/sign-in")}/> {/* used for testing currently */}
-          <PropertyCard showButton={user == null} onButtonClick={()=>redirect("/sign-in")}/>
-          <PropertyCard showButton={user == null} onButtonClick={()=>redirect("/sign-in")}/>
-        </div>
-      </section>  
+<section className="section">
+  <div className={styles.cardGrid} style={{ marginTop: '3.125rem' }}>
+    {randomListings.map((sublet) => (
+      <PropertyCard
+        key={sublet.id}
+        propertyId={sublet.id}
+        title={sublet.title}
+        price={`$${sublet.price}`}
+        address={sublet.address}
+        imageSrc={sublet.images?.length > 0 ? sublet.images[0] : "src/images/example.png"}
+        beds={`${sublet.beds} Bed(s)`}
+        baths={`${sublet.baths} Bath(s)`}
+        showButton={user == null}
+        onButtonClick={() => redirect("/sign-in")}
+        allowDelete={false}
+      />
+    ))}
+  </div>
+</section>
 
       <section className = "section" style={{display: 'flex', flexDirection: 'column',gap: '3.75rem'}}>
         <div style={{textAlign: 'center'}}>

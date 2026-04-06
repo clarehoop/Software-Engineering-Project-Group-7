@@ -4,6 +4,7 @@ import { db } from '../firebase';
 import { collectionGroup, query, where, getDocs } from 'firebase/firestore';
 import PropertyCard from '../components/Card/property-card';
 import './pages.css';
+import MapView from '../components/Map';
 
 function Listings() {
   const [searchParams] = useSearchParams();
@@ -64,15 +65,18 @@ function Listings() {
     navigate(`/properties/${id}`);
   };
 
-  return (
-    <div className="pageContent listingsPage">
-      <div className="resultsContainer">
+// Listings.jsx
+return (
+  <div className="pageContent listingsPage">
+    <div className="splitView">
+      {/* LEFT SIDE: SEARCH RESULTS */}
+      <div className="resultsColumn">
         <h2>{sublets.length} {locationQuery ? `${locationQuery} ` : ""}Sublets</h2>
         
         {loading ? (
           <div className="loader">Searching Database...</div>
         ) : sublets.length === 0 ? (
-          <p>No sublets found. Try adjusting your filters.</p>
+          <p>No sublets found.</p>
         ) : (
           <div className="listingsGrid">
             {sublets.map((sublet) => (
@@ -93,13 +97,14 @@ function Listings() {
           </div>
         )}
       </div>
-      
-      {/* This is where your Map component will eventually go */}
-      <div className="mapContainer">
-        <p style={{textAlign: 'center', marginTop: '50%'}}>Map View Loading...</p>
+
+      {/* RIGHT SIDE: THE MAP */}
+      <div className="mapStickyContainer">
+        <MapView listings={sublets} />
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default Listings;

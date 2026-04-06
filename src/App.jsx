@@ -5,6 +5,7 @@ import PropertyPage from './pages/PropertyPage';
 import Help from './pages/Help';
 import SignIn from './pages/Sign-In';
 import SignUp from './pages/Sign-Up';
+import Admin from './pages/Admin';
 import Listings from './pages/Listings';
 import PropertyDetail from './pages/PropertyDetail';
 import PostListing from './pages/PostListing';
@@ -13,7 +14,7 @@ import Inquiries from './pages/Inquiries';
 import ProtectedRoute from './components/Protected-Route/Protected-Route';
 import './App.css'; 
 import LandlordRoute from './components/Protected-Route/Landlord-Route';
-
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 function App() {
   return(
@@ -22,8 +23,10 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/listings" element={<Listings />} />
+        
         <Route path="/properties/:propertyId" element={<PropertyPage />} />
         <Route path="/inquiries" element={<Inquiries />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path ="/sign-in" element ={<SignIn />}/>
         <Route path="/sign-up" element ={<SignUp />}/>
         <Route element={<ProtectedRoute />}>

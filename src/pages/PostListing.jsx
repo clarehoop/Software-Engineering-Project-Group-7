@@ -92,6 +92,23 @@ function PostListing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const getCoordinates = async (address) => {
+      try{
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
+        );
+        const data = await response.json();
+        if (data && data.length >0){
+          return {
+            lat: parseFloat(data[0].lat),
+            lon: parseFloat(data[0].lon)
+          };
+        }
+      } catch (err){
+        console.error("Geocoding failed:", err);
+      }
+      return null;
+    };
     const base64Images = imageFiles.map((img) => img.base64);
     console.log('number of images:', base64Images.length);
 console.log('total size KB:', JSON.stringify(base64Images).length / 1024);
@@ -107,7 +124,11 @@ base64Images.forEach((img, i) => console.log(`image ${i} size KB:`, img.length /
     }
     setIsSubmitting(true);
 
+
+
     try {
+
+      const coords = await getCoordinates(formData.address);
       const listingsRef = collection(db, "users", user.uid, "listing");
       const docRef = await addDoc(listingsRef, {
         ...formData,
@@ -116,6 +137,7 @@ base64Images.forEach((img, i) => console.log(`image ${i} size KB:`, img.length /
         baths: Number(formData.baths),
         location: formData.location.toLowerCase(),
         images: imageFiles.map((img) => img.base64),
+        coordinates: coords,
         createdAt: new Date()
       });
       alert("Listing posted successfully!");

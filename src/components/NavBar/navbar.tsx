@@ -33,6 +33,10 @@ function NavBar() {
             {user?.is_landlord && (
             <Nav.Link as={NavLink} to="/inquiries">Landlord Inquiries</Nav.Link> 
             )}
+            {user?.is_admin && (
+            <Nav.Link as={NavLink} to="/admin">Admin</Nav.Link> 
+            )}
+            
           </Nav>
         </Navbar.Collapse>
         <div className = {navBarStyles.navBarSection}>

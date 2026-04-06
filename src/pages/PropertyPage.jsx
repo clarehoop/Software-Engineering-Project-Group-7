@@ -11,6 +11,7 @@ import locationIcon from '../images/location.png'
 import arrowIcon from '../images/arrow_icon.png'
 import reverseArrowIcon from '../images/reverse-arrow.png'
 
+import priceIcon from '../images/price-range-icon.png'
 
 function PropertyPage(){
 
@@ -40,13 +41,15 @@ function PropertyPage(){
 
 
   return (
-    <div className= "pageContent">
+    <div className= "pageContent"style={{ maxWidth: '1000px', margin: '0 auto', padding: '20px' }}>
     <section className="section">
     <div className="textContainer">
     <h1 className="headerText">{listing?.title ?? "Loading..."}</h1>
     <div className="locationRow">
     <img src={locationIcon}/>
     <h2 className="subHeaderText">{listing?.location}</h2>
+    <img src={priceIcon}/>
+    <h2 className="subHeaderText">{listing?.price}</h2>
     </div>
     </div>
     </section>

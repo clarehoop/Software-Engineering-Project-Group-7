@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import L from 'leaflet';
 
 // Standard Leaflet Icon fix
@@ -41,6 +42,7 @@ function MapController({ listings }) {
 
 export default function MapView({ listings }) {
   // Default to a general city center while loading
+  const navigate = useNavigate();
   const defaultCenter = [39.1031, -84.5120];
 
   return (
@@ -75,9 +77,26 @@ export default function MapView({ listings }) {
       position={[item.coordinates.lat, item.coordinates.lon]}
     >
       <Popup>
-        <div>
-          <b>{item.title}</b><br />
-          ${item.price}
+      <div style={{ textAlign: 'center' }}>
+    <b style={{ fontSize: '1.1rem' }}>{item.title}</b><br />
+    <span style={{ color: '#2ecc71', fontWeight: 'bold' }}>${item.price}</span>
+    <hr />
+    <button 
+      onClick={(e) => {
+        e.stopPropagation(); // 3. Prevent map interference
+        navigate(`/properties/${item.id}`); // 4. Fixed URL syntax
+      }}
+      style={{
+        background: '#007bff',
+        color: 'white',
+        border: 'none',
+        padding: '5px 10px',
+        borderRadius: '4px',
+        cursor: 'pointer'
+      }}
+    >
+      View Details
+    </button>
         </div>
       </Popup>
     </Marker>

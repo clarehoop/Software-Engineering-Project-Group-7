@@ -29,7 +29,7 @@ interface FormTextComponentProps {
 
 function FormTextComponent({
   name,
-  placeholder = "Price Range",
+  placeholder = "Key Word",
   image,
   icon,
   color,

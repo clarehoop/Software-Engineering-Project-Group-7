@@ -173,6 +173,7 @@ base64Images.forEach((img, i) => console.log(`image ${i} size KB:`, img.length /
           <div style={{ display: 'flex', gap: '1rem' }}>
              <FormTextComponent name="price" type="number" placeholder="Price" value={formData.price} onChange={handleChange} required backgroundColor="#FBF5F1" />
              <FormTextComponent name="beds" type="number" placeholder="Beds" value={formData.beds} onChange={handleChange} required backgroundColor="#FBF5F1" />
+             <FormTextComponent name="baths" type="number" placeholder="Baths" value={formData.baths} onChange={handleChange} required backgroundColor="#FBF5F1" />
           </div>
 
           <div>

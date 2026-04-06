@@ -26,9 +26,11 @@ function HomePageSearchBar() {
   <div className={styles.container}>
     <div className={styles.contentContainer}>
         <div className={styles.item}>
-    <DropdownComponent
+    <FormTextComponent
+    name="Keywords"
     icon="src/images/type-icon.png"
-    onSelect={(val) => setType(val)}
+    value={type}
+    onValueChange={(val) => setType(val)}
     />
     </div>
     <div className={styles.item}>
@@ -45,6 +47,7 @@ function HomePageSearchBar() {
     value={location}
     onValueChange={(val) => setLocation(val)}
     />
+    
     </div>
     <BaseButton
       onClick={handleSearch}>

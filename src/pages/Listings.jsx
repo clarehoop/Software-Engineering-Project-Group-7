@@ -16,35 +16,45 @@ function Listings() {
   const typeQuery = searchParams.get('type');
   const priceQuery = searchParams.get('maxPrice');
 
-
   useEffect(() => {
     const fetchSublets = async () => {
-
       setLoading(true);
       try {
         const baseRef = collectionGroup(db, 'listing');
-
         let constraints = [];
   
+        // Keep location and price filters in the Firestore query
         if (locationQuery) {
-          //Search mode: Filter by location, price, and type
-          // Note: Make sure your DB casing matches (e.g., "Clifton" vs "clifton")
           constraints.push(where("location", "==", locationQuery));
         } 
-        if (typeQuery && typeQuery !== "Type"){
-          constraints.push(where("type", "==", typeQuery));
-        }
-        if (priceQuery){
+        if (priceQuery) {
           constraints.push(where("price", "<=", Number(priceQuery)));
         }
-        const q = query(baseRef, ...constraints);
   
+        const q = query(baseRef, ...constraints);
         const querySnapshot = await getDocs(q);
-        const results = querySnapshot.docs.map(doc => ({ 
+        
+        // Map the raw Firestore data to an array
+        let results = querySnapshot.docs.map(doc => ({ 
           id: doc.id, 
           ...doc.data() 
         })); 
-        
+  
+        // --- KEYWORD SEARCH LOGIC ---
+        if (typeQuery && typeQuery.trim() !== "" && typeQuery !== "Type") {
+          const keyword = typeQuery.toLowerCase();
+          
+          results = results.filter(sublet => {
+            // Fallback to empty string if field is missing to avoid errors
+            const title = (sublet.title || "").toLowerCase();
+            const description = (sublet.description || "").toLowerCase();
+            
+            // Returns true if keyword exists in either the title OR the description
+            return title.includes(keyword) || description.includes(keyword);
+          });
+        }
+        // ----------------------------
+  
         setSublets(results);
       } catch (error) {
         console.error("Firestore Error:", error);
@@ -54,8 +64,7 @@ function Listings() {
     };
   
     fetchSublets();
-  }, [locationQuery, typeQuery, priceQuery]); // Still triggers if the user searches while on the page
-
+  }, [locationQuery, typeQuery, priceQuery]);
   const handleDeleted = (deletedId) => {
     setSublets(prev => prev.filter(s => s.id !== deletedId))
   };

@@ -102,10 +102,9 @@ function PropertyPage(){
     <h1>Interested?</h1> 
     </div>
     <div className="subHeaderText subHeaderText--nonBold-noLine">
-    Interested in this property? Fill out the form below, and our 
-    real estate experts will get back to you with more details, 
-    including scheduling a viewing and answering any questions 
-    you may have.  
+    Interested in this property? Fill out the form below, and the owner of the property
+    will get back to you with more details, 
+    including scheduling a viewing, answering any questions, and helping you secure this property.  
     </div>
     </div>
     <div className="inputFormContainer" style={{gap: '50px', marginTop: "25px"}}>

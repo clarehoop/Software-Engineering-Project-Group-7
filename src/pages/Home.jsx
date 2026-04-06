@@ -76,14 +76,16 @@ function Home(){
       <ReviewCard
       name="Michael Rodriguez"
       imageSrc="src/images/review-image-michael.png"
+      description="This website seriously helped me out! Helped me secure housing for this upcoming Summer 2026 semester. Seamless, clean, and easy to use. Will certainly be considering this website for all sublet-related matters going forward!"
       review="src/images/four-and-half-star-review.png"
       headshot='src/images/review-michael-headshot.png'
-      location='San Diego'/>
+      location='Clifton'/>
       <ReviewCard
       name="Emily Johnson"
+      description="This website was a real life-saver. I recently just began my Masters at the University of Cincinnati, and considering the fact that I am from the West Coast, I wasn't initially sure where to live. Using this website, I was able to get a short-term sublet for the month, easing my fears and helping me get settled. Big thanks to this service for making it so simple and worry-free!"
       imageSrc='src/images/review-image-emily.png'
       headshot='src/images/review-emily-headshot.png'
-      location="Los Angeles"/>
+      location="Clifton"/>
       </div>
 
       </section>

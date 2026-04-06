@@ -7,36 +7,37 @@ import ReviewCard from '../components/Card/review-card';
 import FormTextComponent from '../components/Input-Text/input-text';
 import useRedirect from '../hooks/useRedirect';
 import'./pages.css'
+import { useAuth } from '../context/Auth';
 
 function Home(){
-
     const redirect = useRedirect();
+    const { user } = useAuth();
 
     return( 
       <div className = "pageContent" id="home">
       <section className = "section">
-      <div className = "textContainer">
-      <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
-      <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
-      <div className='buttonRow'>
-      <BaseButton
-      children = "Sign Up"
-      onClick={()=> redirect("/sign-in")}/>     
-      <BaseButton
-      children = "Create a Listing"
-      onClick={()=> redirect("/post")}/>
-      </div>
-      </div>
-      <div style ={{marginTop: '1.125rem'}}>
-      <HomePageSearchBar/>
-      </div>
+        <div className = "textContainer">
+        <h1 className = "headerText">Find a Sublet.<br />Today.</h1>
+        <h2 className = "subHeaderText">Explore a list of student-listed sublets to <br />secure both short-term and semester long <br />housing.</h2>
+          <div className='buttonRow'>
+            {(user == null) && <BaseButton
+            children = "Sign Up"
+            onClick={()=> redirect("/sign-in")}/>}
+            {user?.is_landlord && <BaseButton
+            children = "Create a Listing"
+            onClick={()=> redirect("/post")}/>}
+          </div>
+        </div>
+        <div style ={{marginTop: '1.125rem'}}>
+        <HomePageSearchBar/>
+        </div>
       </section>
       <section className = "section">
-      <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
-      <PropertyCard propertyId ="rTXZV4U4CFXpoMPFeOC6" onButtonClick={()=>redirect("/sign-in")}/> {/* used for testing currently */}
-      <PropertyCard onButtonClick={()=>redirect("/sign-in")}/>
-      <PropertyCard onButtonClick={()=>redirect("/sign-in")}/>
-      </div>
+        <div className={styles.cardGrid} style ={{marginTop: '3.125rem'}}>
+          <PropertyCard showButton={user == null} propertyId ="rTXZV4U4CFXpoMPFeOC6" onButtonClick={()=>redirect("/sign-in")}/> {/* used for testing currently */}
+          <PropertyCard showButton={user == null} onButtonClick={()=>redirect("/sign-in")}/>
+          <PropertyCard showButton={user == null} onButtonClick={()=>redirect("/sign-in")}/>
+        </div>
       </section>  
 
       <section className = "section" style={{display: 'flex', flexDirection: 'column',gap: '3.75rem'}}>
@@ -75,14 +76,16 @@ function Home(){
       <ReviewCard
       name="Michael Rodriguez"
       imageSrc="src/images/review-image-michael.png"
+      description="This website seriously helped me out! Helped me secure housing for this upcoming Summer 2026 semester. Seamless, clean, and easy to use. Will certainly be considering this website for all sublet-related matters going forward!"
       review="src/images/four-and-half-star-review.png"
       headshot='src/images/review-michael-headshot.png'
-      location='San Diego'/>
+      location='Clifton'/>
       <ReviewCard
       name="Emily Johnson"
+      description="This website was a real life-saver. I recently just began my Masters at the University of Cincinnati, and considering the fact that I am from the West Coast, I wasn't initially sure where to live. Using this website, I was able to get a short-term sublet for the month, easing my fears and helping me get settled. Big thanks to this service for making it so simple and worry-free!"
       imageSrc='src/images/review-image-emily.png'
       headshot='src/images/review-emily-headshot.png'
-      location="Los Angeles"/>
+      location="Clifton"/>
       </div>
 
       </section>

@@ -13,8 +13,8 @@ interface ReviewCardProps {
 
 function ReviewCard({ 
   name = "Sarah Nguyen", 
-  location = "San Francisco",
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  location = "Clifton",
+  description = "Would absolutely recommend this service again! I'm a visiting student from the The Ohio State University, who spent Summer 2025 as in intern in Cincinnati. This service was seamless! Super easy to navigate, contact a sublettor, and secure accomdation, supported by a safe and friendly platform.",
   imageSrc = "src/images/review-image-sarah.png",
   review ="src/images/five-star-review.png",
   headshot="src/images/review-sarah-headshot.png"

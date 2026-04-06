@@ -29,5 +29,24 @@ export interface Listing {
   beds: Number;
   baths: Number;
   price: Number;
-  coordinates: GeolocationCoordinates;
+  createdAt: Date;
+  title: string;
 }
+// export interface Listing {
+//   id: string;
+//   landlordId: string;
+//   address: string;
+//   city: string;
+//   country: string;
+//   state: string;
+//   status: string;
+//   type: string;
+//   apt_num: string;
+//   description: string;
+//   lease_terms: string;
+//   roomates: Number;
+//   beds: Number;
+//   baths: Number;
+//   price: Number;
+//   coordinates: GeolocationCoordinates;
+// }

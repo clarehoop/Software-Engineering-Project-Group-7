@@ -56,6 +56,10 @@ function Listings() {
     fetchSublets();
   }, [locationQuery, typeQuery, priceQuery]); // Still triggers if the user searches while on the page
 
+  const handleDeleted = (deletedId) => {
+    setSublets(prev => prev.filter(s => s.id !== deletedId))
+  };
+
   // Handle clicking into a specific sublet 
   const handleCardClick = (id) => {
     navigate(`/properties/${id}`);
@@ -76,16 +80,17 @@ return (
         ) : (
           <div className="listingsGrid">
             {sublets.map((sublet) => (
-              <div key={sublet.id} onClick={() => handleCardClick(sublet.id)}>
+              <div key={sublet.id}>
                 <PropertyCard 
-                title={sublet.title}
-                price={`$${sublet.price}`}
-                address={sublet.address}
-                imageSrc={sublet.images && sublet.images.length > 0 ? sublet.images[0] : "src/images/example.png"}
-                beds={`${sublet.beds} Bed(s)`}
-                baths={`${sublet.baths} Bath(s)`}
-                showButton={false} 
-
+                  title={sublet.title}
+                  price={`$${sublet.price}`}
+                  address={sublet.address}
+                  imageSrc={sublet.images && sublet.images.length > 0 ? sublet.images[0] : "src/images/example.png"}
+                  beds={`${sublet.beds} Bed(s)`}
+                  baths={`${sublet.baths} Bath(s)`}
+                  propertyId={sublet.id}
+                  onDeleted={handleDeleted}
+                  showButton={false} 
                 />
               </div>
             ))}

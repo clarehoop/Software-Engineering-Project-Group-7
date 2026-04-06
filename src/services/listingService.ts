@@ -1,5 +1,5 @@
 import { db } from '../firebase'
-import { getDocs, collection, collectionGroup, doc, getDoc, setDoc, addDoc, query, where } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, addDoc, query, where, deleteDoc } from 'firebase/firestore'
 import { Listing } from 'types/user'
 
 // Returns all listings
@@ -101,4 +101,15 @@ export const getInquiriesByLandlord = async (landlordId: string) => {
   );
   const snapshot = await getDocs(q);
   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+};
+
+export const deleteListing = async (listingId: string): Promise<void> => {
+  const snapshot = await getDocs(collectionGroup(db, 'listing'));
+  const match = snapshot.docs.find(d => d.id === listingId);
+ 
+  if (!match) {
+    throw new Error(`Listing with id "${listingId}" not found.`);
+  }
+ 
+  await deleteDoc(match.ref);
 };

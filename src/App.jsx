@@ -24,12 +24,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/listings" element={<Listings />} />
         
-        <Route path="/properties/:propertyId" element={<PropertyPage />} />
+        
         <Route path="/inquiries" element={<Inquiries />} />
         <Route path="/admin" element={<Admin />} />
         <Route path ="/sign-in" element ={<SignIn />}/>
         <Route path="/sign-up" element ={<SignUp />}/>
         <Route element={<ProtectedRoute />}>
+        <Route path="/properties/:propertyId" element={<PropertyPage />} />
         {/*<Route path="/property/:id" element={<PropertyDetail />} />*/}
         </Route>
         <Route path="/listings" element={<Listings />} />

@@ -8,11 +8,15 @@ import * as UserService from '../services/userService'; // Example service impor
 import BaseButton from '../components/Button/button';
 import { useAuth } from '../context/Auth';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { collectionGroup, getDocs, query, limit } from 'firebase/firestore';
+import {db} from '../firebase';
+import { getRandomListings } from '../services/listingService';
 
 
 function SignIn() {
 
-const {setUser} = useAuth();
+const {user, setUser} = useAuth();
 const redirect = useRedirect();
 
 // States for credentials & error feedback
@@ -22,7 +26,21 @@ const [password, setPassword] = useState('')
 const [error, setError] = useState('')
 const [loading, setLoading] = useState(false);
 const [rememberMe, setRememberMe] = useState(false);
+const [randomListings, setRandomListings] = useState(null);
 
+useEffect(() => {
+  const loadRandom = async () => {
+    try {
+      const listings = await getRandomListings();
+      if (listings && listings.length > 0){
+        setRandomListings(listings[0]);
+      }
+    } catch (error) {
+      console.error("Error fetching random listings:", error);
+    }
+  };
+  loadRandom();
+}, []);
 
 const handleSignIn = async () => {
   setError(null);
@@ -103,8 +121,21 @@ const handleSignIn = async () => {
     </div>
 
     <div className='cardContainer'>
-    <PropertyCard
-    showButton={false}/>
+    {randomListings ? (
+      <PropertyCard
+        key={randomListings.id}
+        propertyId={randomListings.id}
+        title={randomListings.title}
+        price={`$${randomListings.price}`}
+        address={randomListings.address}
+        imageSrc={randomListings.images?.length > 0 ? randomListings.images[0] : "src/images/example.png"}
+        beds={`${randomListings.beds} Bed(s)`}
+        baths={`${randomListings.baths} Bath(s)`}
+        showButton={user == null}
+        onButtonClick={() => redirect("/sign-in")}
+        allowDelete={false}
+    />
+    ):(<p> Loading Featured Sublet...</p>)}
     <p className="signUpSubHeaderText">Hurry! Don't miss out on this sublet!</p>
     </div>
     </section>
